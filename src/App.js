@@ -1,8 +1,17 @@
-import MainPage from "./pages/Main/Main";
+import styled from "styled-components";
+import AppRoutes from "./routs";
+
 function App() {
+  const Wrapper = styled.div`
+    min-height: 100%;
+    overflow: hidden;
+  `;
+
   return (
-   <MainPage/>
-  )
+    <Wrapper>
+      <AppRoutes />
+    </Wrapper>
+  );
 }
 
 export default App;
