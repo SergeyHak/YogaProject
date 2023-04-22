@@ -1,7 +1,9 @@
-import MainPage from "./pages/Main/Main";
+// import MainPage from "./pages/Main/Main";
+import ProfilePage from "./pages/profile/profile.jsx"
 function App() {
   return (
-   <MainPage/>
+  //  <MainPage/>
+  <ProfilePage/>
   )
 }
 
