@@ -33,7 +33,7 @@ export const Inputs = styled.input`
   height: 40px;
   padding-left: 10px;
   font-weight: 400;
-  font-size: 23px;
+  font-size: 20px;
   outline: none;
   line-height: 24px;
   border: 1px solid #d0cece;
