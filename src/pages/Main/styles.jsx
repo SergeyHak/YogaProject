@@ -1,11 +1,11 @@
 import styled from "styled-components";
 export const ContainerDiv = styled.div`
   position: relative;
-  width: 1440px;
+  width: 100%;
   height: 1448px;
   background: #271a58;
   margin: 0 auto;
-  margin-top: 200px;
+  
 `;
 export const ContentDiv = styled.div`
   margin-left: 140px;
