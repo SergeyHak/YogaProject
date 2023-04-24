@@ -1,6 +1,6 @@
 import * as S from "./styles";
 import logoBlack from "../../img/logoBlack.png";
-import UserPhoto from "../../img/EllipsePhoto.png";
+import UserPhoto from "../../img/EllipsePhot.png";
 import VideoImg from "../../img/yoga.png";
 
 export default function Lesson() {
