@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-
 import Registration from "./pages/authorization/registration";
 import Login from "./pages/authorization/login";
 import MainPage from "./pages/Main/Main";
