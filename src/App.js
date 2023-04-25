@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AppRoutes from "./routs";
+import AppRoutes from "./routs/routs";
 
 function App() {
   const Wrapper = styled.div`

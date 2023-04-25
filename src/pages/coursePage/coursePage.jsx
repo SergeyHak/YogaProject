@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import * as S from "./styles";
 import logo from "../../img/logoBlack.png";
 import LikesImg1 from "../../img/likes1.png";
@@ -12,13 +14,16 @@ export default function CoursePage() {
       <S.ContentBlock>
         <S.TitleBlock>
           <S.LogoImg src={logo} alt="logo" />
-          <S.EnterButton>Войти</S.EnterButton>
+          <Link to="/login">
+            <S.EnterButton>Войти</S.EnterButton>
+          </Link>
         </S.TitleBlock>
         <S.HeadContentBlock
           style={{ backgroundImage: `url(${backgroundProf1Url})` }}
         >
           <S.SubTitleBlock>
             <S.TitleText>Йога</S.TitleText>
+            <S.ButtonPay>Купить курс</S.ButtonPay>
           </S.SubTitleBlock>
         </S.HeadContentBlock>
         <S.TitleLikeText>Подойдет для вас, если:</S.TitleLikeText>

@@ -5,7 +5,6 @@ export const ContainerDiv = styled.div`
   height: 1764px;
   background: #fafafa;
   margin: 0 auto;
-  margin-top: 200px;
 `;
 export const ContentDiv = styled.div`
   margin-left: 140px;
