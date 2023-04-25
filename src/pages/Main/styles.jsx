@@ -1,11 +1,10 @@
 import styled from "styled-components";
 export const ContainerDiv = styled.div`
   position: relative;
-  width: 100%;
+  width: 1440px;
   height: 1448px;
   background: #271a58;
   margin: 0 auto;
-  
 `;
 export const ContentDiv = styled.div`
   margin-left: 140px;
@@ -43,11 +42,11 @@ export const EnterButton = styled.button`
   text-align: center;
   font-feature-settings: "pnum" on, "lnum" on;
   color: #ffffff;
-  &:hover{
-    background: #2D1F79;
+  &:hover {
+    background: #2d1f79;
   }
-  &:active{
-    background: #3B29A2;
+  &:active {
+    background: #3b29a2;
   }
 `;
 export const TitleTextSpan = styled.span`
@@ -115,11 +114,11 @@ export const UpButton = styled.button`
   letter-spacing: -0.1px;
   font-feature-settings: "pnum" on, "lnum" on;
   color: #000000;
-  &:hover{
-    background: #DAF289;
+  &:hover {
+    background: #daf289;
   }
-  &:active{
-    background: #EBFFAB;
+  &:active {
+    background: #ebffab;
   }
 `;
 export const ButtonDiv = styled.div`
