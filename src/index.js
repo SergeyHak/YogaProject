@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import App from "./App";
 
-import "./index.css";
+import GlobalStyle from "./GlobalStyle";
 import './firebase';
 import { store } from "./store";
 
@@ -13,6 +13,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
+        <GlobalStyle />
         <App />
       </Provider>
     </BrowserRouter>
