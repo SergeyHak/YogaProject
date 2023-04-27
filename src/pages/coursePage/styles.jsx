@@ -75,7 +75,24 @@ export const TitleText = styled.h1`
   margin-top: 30px;
   padding: 0;
 `;
-
+export const ButtonPay = styled.button`
+  margin-top: 80px;
+  width: 275px;
+  height: 55px;
+  left: 140px;
+  top: 360px;
+  background: rgb(88, 14, 162);
+  border-radius: 46px;
+  font-family: StratosSkyeng;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+  font-feature-settings: "pnum", "lnum";
+  color: rgb(255, 255, 255);
+  border-color: rgb(249, 235, 255);
+`;
 export const TitleDirectionsText = styled.p`
   font-family: "StratosSkyeng";
   font-style: normal;
