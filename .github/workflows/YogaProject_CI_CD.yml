@@ -38,7 +38,7 @@ jobs:
         with:
           # в значение GITHUB_TOKEN помещается ссылка на ваш секрет в репозитории
           # в данном случае его название KEY
-          GITHUB_TOKEN: ${{ PROJECT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN }}
           BRANCH: gh-pages
           FOLDER: public
           CLEAN: true
