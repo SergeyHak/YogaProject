@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 
 function Example() {
   const props = {
-    width: "1160",
+    width: "1161",
     height: "639",
     playerVars: {
       autoplay: 1,
