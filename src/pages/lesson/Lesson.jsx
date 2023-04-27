@@ -1,7 +1,7 @@
 import * as S from "./styles";
 import logoBlack from "../../img/logoBlack.png";
 import UserPhoto from "../../img/EllipsePhot.png";
-import VideoImg from "../../img/yoga.png";
+import Example from "../../componets/yuoTube";
 
 export default function Lesson() {
   return (
@@ -21,8 +21,8 @@ export default function Lesson() {
           <S.TitleTextSpanLogin>
             Красота и здоровье / Йога на каждый день / 2 день
           </S.TitleTextSpanLogin>
-        </S.SubTitleDiv>
-        <S.ImgYogoVideo src={VideoImg} />
+        </S.SubTitleDiv>        
+        <Example style = {{ width:"1160",height:"639"}} />
         <S.BlockProgressLesson>
           <S.ExercisesNumber>
             <S.TitleTextSpanLogin>Упражнения</S.TitleTextSpanLogin>

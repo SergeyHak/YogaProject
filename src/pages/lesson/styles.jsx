@@ -45,6 +45,7 @@ export const TitleTextSpan = styled.span`
 
 export const TitleTextSpanLogin = styled.span`
   padding-top: 40px;
+  padding-bottom: 40px;
   font-family: "StratosSkyeng";
   font-style: normal;
   font-weight: 400;
@@ -69,12 +70,6 @@ export const HeadContentDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const ImgYogoVideo = styled.img`
-  padding-top: 40px;
-  width: 1160px;
-  height: 639px;
-`;
-
 export const BlockProgressLesson = styled.div`
   display: flex;
   padding-top: 40px;
@@ -89,7 +84,6 @@ export const ExercisesNumber = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-}
 `;
 
 export const TextExercisesRepetitions = styled.ul`
