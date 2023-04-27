@@ -11,22 +11,7 @@ export const ContentDiv = styled.div`
   margin-left: 140px;
   margin-right: 140px;
 `;
-export const LogoTitleDiv = styled.div`
-  padding-top: 36px;
-  width: 182.96px;
-  height: 28.56px;
-`;
-export const UserDiv = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding-top: 24px;
-`;
-export const LogoImg = styled.img``;
-export const UserPhotoImg = styled.img`
-width: 50px;
-height: 50px;
-`;
+
 export const SubTitleDiv = styled.div`
   display: flex;
   flex-direction: column;
