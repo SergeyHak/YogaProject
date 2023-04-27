@@ -10,25 +10,31 @@ import logoBlack from "../../img/logoBlack.png";
 
 function Registration() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  console.log(email, pass);
+  const [error, setError] = useState("");
 
   const handleLogin = () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, pass)
-      .then(({user}) => {
+      .then(({ user }) => {
         dispatch(
           setUser({
             email: user.email,
             id: user.uid,
             token: user.accessToken,
-          }));
-          navigate("/profile", { replace: true });
+          })
+        );
+        navigate("/profile", { replace: true });
       })
-      .catch(console.error);
+
+      .catch((err) => {
+        console.log(err.message);
+        setError(err.message);
+      });
+    // .catch(console.error);
   };
 
   return (
@@ -39,15 +45,24 @@ function Registration() {
           type="email"
           placeholder="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setError("");
+          }}
         />
         <S.Inputs
           type="password"
           placeholder="Пароль"
           value={pass}
-          onChange={(e) => setPass(e.target.value)}
+          onChange={(e) => {
+            setPass(e.target.value);
+            setError("");
+          }}
         />
         {/* <S.Inputs type="password" placeholder="Повторить пароль" /> */}
+        <S.ErrorBox>
+          <S.ErrorMessage>{error}</S.ErrorMessage>
+        </S.ErrorBox>
         <S.OstiumButton onClick={handleLogin}>
           Зарегистрироваться
         </S.OstiumButton>

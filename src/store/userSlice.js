@@ -17,7 +17,7 @@ const userSlice = createSlice({
       state.token = action.payload.token;
       state.id = action.payload.id;
     },
-    remoueUser(state) {
+    removeUser(state) {
       state.username = null;
       state.email = null;
       state.token = null;
@@ -26,6 +26,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, remoueUser } = userSlice.actions;
+export const { setUser, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;
