@@ -11,20 +11,7 @@ export const ContentDiv = styled.div`
   margin-left: 140px;
   margin-right: 140px;
 `;
-export const LogoTitleDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding-top: 36px;
-  margin-right: 16px;
-`;
-export const UserDiv = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding-top: 24px;
-`;
-export const LogoImg = styled.img``;
-export const UserPhotoImg = styled.img``;
+
 export const SubTitleDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -150,23 +137,23 @@ export const TitleCourseSpan = styled.span`
   color: #000000;
 `;
 export const SportDiv = styled.div`
-position:relative;
+  position: relative;
 `;
 export const SportButton = styled.button`
-width: 136px;
-height: 43px;
-left: 30px;
-top: 410px;
-background: #C7E957;
-border-radius: 80px;
-font-family: 'StratosSkyeng';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 115%;
-font-feature-settings: 'pnum' on, 'lnum' on;
-color: #000000;
-position: absolute;
+  width: 136px;
+  height: 43px;
+  left: 30px;
+  top: 410px;
+  background: #c7e957;
+  border-radius: 80px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #000000;
+  position: absolute;
 `;
 export const HeadContentDiv = styled.div`
   display: flex;
