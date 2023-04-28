@@ -12,12 +12,9 @@ const firebaseConfig = {
   measurementId: "G-B2L0P9JB8M",
 };
 
-
 const app = initializeApp(firebaseConfig);
-console.log(app)
-console.log(analytics)
 const analytics = getAnalytics(app);
-
+console.log(analytics)
 
 
 
