@@ -30,8 +30,8 @@ jobs:
       #- name: Run Test 🔨
        # run: npm run test
 
-      #- name: Build 👷
-       # run: npm run build
+      - name: Build 👷
+        run: npm run build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
