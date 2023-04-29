@@ -30,10 +30,7 @@ export const SubTitleDiv = styled.div`
 `;
 export const UserNameSpan = styled.span``;
 
-
-export const TitleTextSpan = styled.span`
-  font-family: "StratosSkyeng";
-  font-style: normal;
+export const TitleText = styled.div`
   font-weight: 400;
   font-size: 48px;
   line-height: 56px;
@@ -42,32 +39,41 @@ export const TitleTextSpan = styled.span`
   padding-top: 74px;
 `;
 
+export const HeadNav = styled.a`
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #000000;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
+export const SlashSpan = styled.span`
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #000000;
+`;
+
+export const WorkoutVideo = styled.div`
+  margin-top: 40px;
+`;
+
+export const HeadContentDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export const TitleTextSpanLogin = styled.span`
   padding-top: 40px;
-  padding-bottom: 40px;
   font-family: "StratosSkyeng";
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
   line-height: 40px;
   color: #000000;
-`;
-
-export const TitleCourseSpan = styled.span`
-  padding-top: 70px;
-  font-family: "StratosSkyeng";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 56px;
-  font-feature-settings: "pnum" on, "lnum" on;
-  color: #000000;
-`;
-
-export const HeadContentDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 export const BlockProgressLesson = styled.div`
@@ -93,8 +99,7 @@ export const TextExercisesRepetitions = styled.ul`
   line-height: 32px;
 `;
 
-export const TextLi = styled.li`
-`;
+export const TextLi = styled.li``;
 
 export const fillProgressButton = styled.button`
   width: 275px;
@@ -112,8 +117,6 @@ export const fillProgressButton = styled.button`
   border-color: #580ea2;
 `;
 
-
-
 export const ProgressLesson = styled.div`
   background: #f2f2f2;
   border-radius: 30px;
@@ -126,7 +129,6 @@ export const ProgressLesson = styled.div`
 
 export const BlockAllExercises = styled.div`
   width: 100%;
-  
 `;
 
 export const BlockProgress = styled.div`
@@ -144,19 +146,21 @@ export const NameExerciseProgress = styled.div`
   color: #000000;
 `;
 
-export const VisuallyProgressOne = styled.div`
+export const VisuallyProgressOne = styled.input`
+  overflow: hidden;
+  -webkit-appearance: none;
   width: 278px;
   height: 36px;
-  background: #f9ebff;
+  background-color: #edecff;
   border: 2px solid #565eef;
   border-radius: 22px;
-  display: flex;
-  justify-content: flex-start;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: #ffffff;
+
+  &::-webkit-slider-thumb {
+    width: 0px;
+    -webkit-appearance: none;
+    height: 0px;
+    box-shadow: -290px 0 0 290px #565eef;
+  }
 `;
 
 export const VisuallyOne = styled.div`
@@ -168,40 +172,47 @@ export const VisuallyOne = styled.div`
   justify-content: center;
 `;
 
-export const VisuallyProgressTwo = styled.div`
+export const VisuallyProgressTwo = styled.input`
+  overflow: hidden;
+  -webkit-appearance: none;
   width: 278px;
   height: 36px;
   background: #fff2e0;
   border: 2px solid #ff6d00;
   border-radius: 22px;
-  display: flex;
-  justify-content: flex-start;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: #ffffff;
+
+  &::-webkit-slider-thumb {
+    width: 0px;
+    -webkit-appearance: none;
+    height: 0px;
+    box-shadow: -290px 0 0 290px #ff6d00;
+  }
 `;
 
 export const VisuallyTwo = styled.div`
   display: flex;
   width: 45%;
   height: 100%;
-  background: #FF6D00;
+  background: #ff6d00;
   border-radius: 22px;
   justify-content: center;
 `;
 
-export const VisuallyProgressThree = styled.div`
+export const VisuallyProgressThree = styled.input`
+  overflow: hidden;
+  -webkit-appearance: none;
   width: 278px;
   height: 36px;
   background: #f9ebff;
   border: 2px solid #9a48f1;
   border-radius: 22px;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: #ffffff;
+
+  &::-webkit-slider-thumb {
+    width: 0px;
+    -webkit-appearance: none;
+    height: 0px;
+    box-shadow: -290px 0 0 290px #9a48f1;
+  }
 `;
 
 export const VisuallyThree = styled.div`
