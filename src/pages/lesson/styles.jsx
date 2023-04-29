@@ -97,6 +97,7 @@ export const TextExercisesRepetitions = styled.ul`
   font-weight: 400;
   font-size: 24px;
   line-height: 32px;
+  color: black;
 `;
 
 export const TextLi = styled.li``;
