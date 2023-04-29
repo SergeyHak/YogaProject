@@ -2,7 +2,7 @@ import styled from "styled-components";
 export const ContainerDiv = styled.div`
   position: relative;
   width: 1440px;
-  height: 1764px;
+  height: 1440px;
   background: #fafafa;
   margin: 0 auto;
   margin-top: 200px;
@@ -12,10 +12,9 @@ export const ContentDiv = styled.div`
   margin-right: 140px;
 `;
 export const LogoTitleDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
   padding-top: 36px;
-  margin-right: 16px;
+  width: 182.96px;
+  height: 28.56px;
 `;
 export const UserDiv = styled.div`
   display: flex;
@@ -24,7 +23,10 @@ export const UserDiv = styled.div`
   padding-top: 24px;
 `;
 export const LogoImg = styled.img``;
-export const UserPhotoImg = styled.img``;
+export const UserPhotoImg = styled.img`
+width: 50px;
+height: 50px;
+`;
 export const SubTitleDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -150,23 +152,23 @@ export const TitleCourseSpan = styled.span`
   color: #000000;
 `;
 export const SportDiv = styled.div`
-position:relative;
+  position: relative;
 `;
 export const SportButton = styled.button`
-width: 136px;
-height: 43px;
-left: 30px;
-top: 410px;
-background: #C7E957;
-border-radius: 80px;
-font-family: 'StratosSkyeng';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 115%;
-font-feature-settings: 'pnum' on, 'lnum' on;
-color: #000000;
-position: absolute;
+  width: 136px;
+  height: 43px;
+  left: 30px;
+  top: 410px;
+  background: #c7e957;
+  border-radius: 80px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #000000;
+  position: absolute;
 `;
 export const HeadContentDiv = styled.div`
   display: flex;

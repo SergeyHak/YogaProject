@@ -47,7 +47,6 @@ export const HeadContentBlock = styled.div`
   justify-content: space-between;
   margin-top: 75px;
   margin-bottom: 75px;
-
   width: 1160px;
   height: 310px;
   background: rgba(205, 205, 205, 0.1);
@@ -83,7 +82,7 @@ export const ButtonPay = styled.button`
   top: 360px;
   background: rgb(88, 14, 162);
   border-radius: 46px;
-  font-family: StratosSkyeng;
+  font-family: "StratosSkyeng";
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
@@ -171,6 +170,7 @@ export const DirectionsListLi = styled.li`
   font-size: 24px;
   line-height: 32px;
   white-space: pre-wrap;
+  color: black;
 `;
 
 export const InfoBlock = styled.div`
