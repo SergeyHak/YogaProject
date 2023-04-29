@@ -16,18 +16,21 @@ export const MeinBox = styled.div`
   background: #ffffff;
   border-radius: 12px;
   display: flex;
-  gap: 20px;
+
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
   justify-content: center;
 `;
 
-export const ImgLogo = styled.img``;
+export const ImgLogo = styled.img`
+  margin-bottom: 20px;
+`;
 
 export const Inputs = styled.input`
   width: 278.5px;
   height: 40px;
+  margin-bottom: 20px;
   padding-left: 10px;
   font-weight: 400;
   font-size: 23px;
@@ -53,7 +56,6 @@ export const OstiumButton = styled.button`
   border-radius: 6px;
   font-weight: 400;
   font-size: 18px;
-  margin-top: 35px;
   line-height: 24px;
   color: #ffffff;
   :hover {
@@ -70,6 +72,7 @@ export const RegisterButton = styled.button`
   height: 52px;
   left: 41px;
   top: 340px;
+  margin-top: 20px;
   border: 1px solid #d0cece;
   border-radius: 6px;
   font-weight: 400;
@@ -82,4 +85,24 @@ export const RegisterButton = styled.button`
   :active {
     background: #d9d9d9;
   }
+`;
+
+export const ErrorBox = styled.div`
+  width: 366px;
+  height: 40px;
+  background: #ffffff;
+  text-align: center;
+  
+`;
+
+export const ErrorMessage = styled.p`
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.8px;
+  color: red;
+  margin: 0;
+  padding: 0;
 `;
