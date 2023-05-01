@@ -55,6 +55,8 @@ export default function Lesson() {
               onClick={HandleClickPopup}
               btnName="Заполнить свой прогресс"
             />
+
+    
             {popupActive === true ? (
               <PopupExercises
                 setPopupActive={setPopupActive}
@@ -64,6 +66,7 @@ export default function Lesson() {
             {popupConfirmActive === true ? (
               <PopupConfirm setPopupConfirmActive={setPopupConfirmActive} />
             ) : null}
+
           </S.ExercisesNumber>
           <S.ProgressLesson>
             <S.TitleTextSpanLogin>

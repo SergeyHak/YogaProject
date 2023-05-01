@@ -10,7 +10,11 @@ import { Input } from "../input/input";
 
 import * as S from "./styles";
 
+
+
+
 export function PopupExercises({ setPopupActive, setPopupConfirmActive }) {
+
   const [inputValueOne, setInputValueOne] = useState();
   const [inputValueTwo, setInputValueTwo] = useState();
   const [inputValueThree, setInputValueThree] = useState();
@@ -40,7 +44,10 @@ export function PopupExercises({ setPopupActive, setPopupConfirmActive }) {
     return () => clearTimeout(timer);
   };
   return (
+
+   
     <S.Container onClick={() => setPopupActive(false)}>
+
       <S.PopupContent onClick={(e) => e.stopPropagation()}>
         <S.PopupTitle>Мой прогресс</S.PopupTitle>
         <Input
