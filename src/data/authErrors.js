@@ -1,5 +1,5 @@
 AUTH_ERROR_CODES: {
-  ADMIN_ONLY_OPERATION: "auth/admin-restricted-operation";
+  ADMIN_ONLY_OPERATION: "auth/admin-restricted-operation"
   ARGUMENT_ERROR: "auth/argument-error";
   APP_NOT_AUTHORIZED: "auth/app-not-authorized";
   APP_NOT_INSTALLED: "auth/app-not-installed";

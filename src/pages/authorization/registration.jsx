@@ -15,7 +15,8 @@ function Registration() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
-
+  localStorage.setItem("login",email);
+  localStorage.setItem('pass',pass);
   const handleLogin = () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, pass)

@@ -74,6 +74,7 @@ export const TitleTextSpanLogin = styled.span`
   font-feature-settings: "pnum" on, "lnum" on;
   color: #000000;
   padding-top: 40px;
+  margin-right: 5px;
 `;
 export const TitleTextSpanPass = styled.span`
   font-family: "StratosSkyeng";
@@ -84,6 +85,7 @@ export const TitleTextSpanPass = styled.span`
   font-feature-settings: "pnum" on, "lnum" on;
   color: #000000;
   padding-top: 20px;
+  margin-right: 5px;
 `;
 export const ChangeLogPassDiv = styled.div`
   padding-top: 40px;
@@ -158,4 +160,35 @@ export const SportButton = styled.button`
 export const HeadContentDiv = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+export const UserLoginInput = styled.input`
+  border-left: transparent;
+  border-right: transparent;
+  border-top: transparent;
+  outline: none;
+  text-align: center;
+  font-size: 15px;
+`;
+export const LoginButton = styled.button`
+  background: #39316c;
+  border-radius: 46px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #ffffff;
+  height: 30px;
+    width: 100px;
+  &:hover {
+    background: #120b3c;
+  }
+  &:active {
+    background: #3b29a2;
+  }
+`;
+export const SpanText = styled.span`
+  margin-left: 10px;
 `;

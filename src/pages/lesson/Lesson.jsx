@@ -44,9 +44,7 @@ export default function Lesson({ props, inputValueOne }) {
               onClick={HandleClickPopup}
               btnName="Заполнить свой прогресс"
             />
-            {popupActive === true ? (
-              <PopupExercises active={popupActive} setActive={setPopupActive} />
-            ) : null}
+            {popupActive === true ? (<PopupExercises active={popupActive} setActive={setPopupActive} />) : null}
           </S.ExercisesNumber>
           <S.ProgressLesson>
             <S.TitleTextSpanLogin>
