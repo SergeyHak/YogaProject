@@ -21,7 +21,16 @@ export const UserPhotoImg = styled.img`
   height: 50px;
 `;
 
-export const UserNameSpan = styled.span``;
+export const UserNameSpan = styled.span`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: right;
+  letter-spacing: -0.1px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #000000;
+`;
 
 export const HeadContentDiv = styled.div`
   display: flex;
