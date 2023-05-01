@@ -7,6 +7,7 @@ import { setUser } from "../../store/userSlice.js";
 
 import * as S from "./style";
 import logoBlack from "../../img/logoBlack.png";
+import getError from "../../data/authErrors";
 
 function Registration() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function Registration() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
+  const [isClick, setIsClick] = useState("false");
 
   const handleLogin = () => {
     const auth = getAuth();
@@ -33,6 +35,7 @@ function Registration() {
       .catch((err) => {
         console.log(err.message);
         setError(err.message);
+        setIsClick(!!err.message);
       });
     // .catch(console.error);
   };
@@ -48,6 +51,7 @@ function Registration() {
           onChange={(e) => {
             setEmail(e.target.value);
             setError("");
+            setIsClick("false");
           }}
         />
         <S.Inputs
@@ -57,11 +61,14 @@ function Registration() {
           onChange={(e) => {
             setPass(e.target.value);
             setError("");
+            setIsClick("false");
           }}
         />
         {/* <S.Inputs type="password" placeholder="Повторить пароль" /> */}
         <S.ErrorBox>
-          <S.ErrorMessage>{error}</S.ErrorMessage>
+          <S.ErrorMessage>
+            {getError(error, isClick)}
+          </S.ErrorMessage>
         </S.ErrorBox>
         <S.OstiumButton onClick={handleLogin}>
           Зарегистрироваться
