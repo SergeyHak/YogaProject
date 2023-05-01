@@ -10,11 +10,7 @@ import { Input } from "../input/input";
 
 import * as S from "./styles";
 
-<<<<<<< HEAD
-export function PopupExercises() {
-=======
 export function PopupExercises({ setPopupActive, setPopupConfirmActive }) {
->>>>>>> a3f331df24d83977ecc5a8321549e9af85566da1
   const [inputValueOne, setInputValueOne] = useState();
   const [inputValueTwo, setInputValueTwo] = useState();
   const [inputValueThree, setInputValueThree] = useState();
