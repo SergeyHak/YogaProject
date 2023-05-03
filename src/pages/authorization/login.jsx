@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice.js";
-
 import * as S from "./style.jsx";
 import logoBlack from "../../img/logoBlack.png";
 import getError from "../../data/authErrors";
@@ -12,12 +11,15 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [isClick, setIsClick] = useState("false");
 
-  console.log(email, pass);
+  localStorage.setItem("login",email);
+  localStorage.setItem('pass',pass);
+  console.log(email, pass);  
 
   const handleLogin = () => {
     const auth = getAuth();
@@ -77,5 +79,4 @@ function Login() {
     </S.Container>
   );
 }
-
 export default Login;

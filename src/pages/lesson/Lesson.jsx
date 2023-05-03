@@ -1,26 +1,37 @@
 /* eslint-disable no-restricted-globals */
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Button } from "../../components/button/button";
 import { PopupExercises } from "../../components/popupExercises/popupExercises";
 import { UserHeader } from "../../components/userHeader/userHeader";
+import { PopupConfirm } from "../../components/popupConfirm/popupConfirm";
 import * as S from "./styles";
 
-export default function Lesson({ props, inputValueOne }) {
+export default function Lesson() {
   const [popupActive, setPopupActive] = useState(false);
+  const [popupConfirmActive, setPopupConfirmActive] = useState(false);
 
   const HandleClickPopup = () => {
     setPopupActive(true);
   };
+
+  const exerciseOne = useSelector(
+    (state) => state.exerciseProgress.exerciseOne
+  );
+  const exerciseTwo = useSelector(
+    (state) => state.exerciseProgress.exerciseTwo
+  );
+  const exerciseThree = useSelector(
+    (state) => state.exerciseProgress.exerciseThree
+  );
   return (
     <S.ContainerDiv>
       <S.ContentDiv>
         <UserHeader />
         <S.TitleText>Йога</S.TitleText>
-        <S.HeadNav>Красота и здоровье</S.HeadNav>
-        <S.SlashSpan>/ </S.SlashSpan>
-        <S.HeadNav>Йога на каждый день</S.HeadNav>
-        <S.SlashSpan>/ </S.SlashSpan>
-        <S.HeadNav>2 день</S.HeadNav>
+        <S.TitleWorkout>
+          Красота и здоровье/ Йога на каждый день/ 2 день
+        </S.TitleWorkout>
         <S.WorkoutVideo>
           <iframe
             width="1160"
@@ -44,9 +55,18 @@ export default function Lesson({ props, inputValueOne }) {
               onClick={HandleClickPopup}
               btnName="Заполнить свой прогресс"
             />
+
+    
             {popupActive === true ? (
-              <PopupExercises active={popupActive} setActive={setPopupActive} />
+              <PopupExercises
+                setPopupActive={setPopupActive}
+                setPopupConfirmActive={setPopupConfirmActive}
+              />
             ) : null}
+            {popupConfirmActive === true ? (
+              <PopupConfirm setPopupConfirmActive={setPopupConfirmActive} />
+            ) : null}
+
           </S.ExercisesNumber>
           <S.ProgressLesson>
             <S.TitleTextSpanLogin>
@@ -59,9 +79,10 @@ export default function Lesson({ props, inputValueOne }) {
                   name="one"
                   type="range"
                   min="0"
-                  max="100"
+                  max="10"
                   step="1"
-                  value={inputValueOne}
+                  value={exerciseOne || ""}
+                  readOnly
                 />
               </S.BlockProgress>
               <S.BlockProgress>
@@ -70,8 +91,10 @@ export default function Lesson({ props, inputValueOne }) {
                   name="two"
                   type="range"
                   min="0"
-                  max="100"
+                  max="10"
                   step="1"
+                  value={exerciseTwo || ""}
+                  readOnly
                 />
               </S.BlockProgress>
               <S.BlockProgress>
@@ -82,8 +105,10 @@ export default function Lesson({ props, inputValueOne }) {
                   name="three"
                   type="range"
                   min="0"
-                  max="100"
+                  max="5"
                   step="1"
+                  value={exerciseThree || ""}
+                  readOnly
                 />
               </S.BlockProgress>
             </S.BlockAllExercises>

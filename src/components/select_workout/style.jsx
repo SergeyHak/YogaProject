@@ -1,11 +1,13 @@
 import styled from "styled-components";
 export const ContainerDiv = styled.div`
-  position: relative;
+  position: absolute;
   width: 444px;
   height: 626px;
   background: #ffffff;
   border-radius: 12px;
   margin: 0 auto;
+  top: 50px;
+  left: 500px;
 `;
 export const ContentDiv = styled.div``;
 export const TitleWindowSpan = styled.span`
@@ -32,6 +34,11 @@ export const ChoiceTrainingDiv = styled.div`
   width: 278px;
   height: 480px;
 `;
+export const Div = styled.div`
+&:hover{
+  color: #c9eabd;
+}
+`;
 export const TrainingButton = styled.button`
   width: 278px;
   height: 76px;
@@ -48,6 +55,12 @@ export const TrainingButton = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &:hover{
+    color: #c9eabd;
+    border-color: #2da02d;    
+
+    
+  }
 `;
 export const TextSpan = styled.span`
   font-family: "StratosSkyeng";
@@ -56,4 +69,7 @@ export const TextSpan = styled.span`
   font-size: 16px;
   line-height: 18px;
   color: #000000;
+  &:hover{
+    color: #c9eabd;
+  }
 `;

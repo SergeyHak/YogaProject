@@ -17,6 +17,8 @@ function Registration() {
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [isClick, setIsClick] = useState("false");
+  localStorage.setItem("login",email);
+  localStorage.setItem('pass',pass);
 
   const handleLogin = () => {
     const auth = getAuth();
@@ -37,7 +39,7 @@ function Registration() {
         setError(err.message);
         setIsClick(!!err.message);
       });
-    // .catch(console.error);
+    
   };
 
   return (
