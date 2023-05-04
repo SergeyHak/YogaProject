@@ -6,7 +6,6 @@ const initialState = {
   token: null,
   id: null,
 };
-
 const userSlice = createSlice({
   name: "user",
   initialState,
