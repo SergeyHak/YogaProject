@@ -7,8 +7,13 @@ import LikesImg2 from "../../img/likes2.png";
 import LikesImg3 from "../../img/likes3.png";
 import Handset from "../../img/handset.png";
 import backgroundProf1Url from "../../img/background_prof_1.png";
+// import { getDatabase } from "../../services/firebaseApi";
+import { getDataBase } from "../../firebase";
 
 export default function CoursePage() {
+
+  getDataBase();
+
   return (
     <S.Container>
       <S.ContentBlock>
