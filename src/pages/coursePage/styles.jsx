@@ -2,9 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 1440px;
-  height: 1623px;
+  min-height: 1623px;
   margin: 0 auto;
   background-color: #fafafa;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  margin-bottom: 200px;
 `;
 
 export const ContentBlock = styled.div`
