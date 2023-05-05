@@ -19,7 +19,7 @@ export default function CoursePage({ refURL }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isAuth } = useAuth;
+  const { isAuth } = useAuth();
 
   const payCourse = () => {
     if (isAuth === false) {
