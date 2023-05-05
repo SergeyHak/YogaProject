@@ -12,9 +12,11 @@ function Login() {
 
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+ 
+
   localStorage.setItem("login",email);
   localStorage.setItem('pass',pass);
-  console.log(email, pass);  
+   
   const handleLogin = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, pass)

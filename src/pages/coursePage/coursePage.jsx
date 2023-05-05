@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setPay } from "../../store/payProductSlice";
 import * as S from "./styles";
 import logo from "../../img/logoBlack.png";
 import LikesImg1 from "../../img/likes1.png";
@@ -7,13 +8,41 @@ import LikesImg2 from "../../img/likes2.png";
 import LikesImg3 from "../../img/likes3.png";
 import Handset from "../../img/handset.png";
 import backgroundProf1Url from "../../img/background_prof_1.png";
+import { useAuth } from "../../store/hooks/use-auth";
 
 export default function CoursePage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { isAuth } = useAuth;
+  
+  const payCourse = () => {
+    if (isAuth === false) {
+        navigate("/login", { replace: true });
+    } else {
+      const askPay = window.confirm("Вы хотите купить данный курс?");
+      console.log(askPay);
+      if (askPay) {
+        dispatch(
+          setPay({
+            yoga: true,
+          })
+        );
+
+        navigate("/profile", { replace: true });
+      }
+    }
+  }  
+    
+    
+
   return (
     <S.Container>
       <S.ContentBlock>
         <S.TitleBlock>
-          <S.LogoImg src={logo} alt="logo" />
+          <Link to="/">
+            <S.LogoImg src={logo} alt="logo" />
+          </Link>
           <Link to="/login">
             <S.EnterButton>Войти</S.EnterButton>
           </Link>
@@ -23,7 +52,8 @@ export default function CoursePage() {
         >
           <S.SubTitleBlock>
             <S.TitleText>Йога</S.TitleText>
-            <S.ButtonPay>Купить курс</S.ButtonPay>
+
+            <S.ButtonPay onClick={payCourse}>Купить курс</S.ButtonPay>
           </S.SubTitleBlock>
         </S.HeadContentBlock>
         <S.TitleLikeText>Подойдет для вас, если:</S.TitleLikeText>

@@ -64,6 +64,8 @@ export const SportChoiceDiv = styled.div`
   flex-wrap: wrap;
   column-gap: 34px;
   row-gap: 44px;
+  position: relative;
+  background-color: #fafafa;
 `;
 export const TitleTextSpanLogin = styled.span`
   font-family: "StratosSkyeng";
@@ -139,6 +141,7 @@ export const TitleCourseSpan = styled.span`
   color: #000000;
 `;
 export const SportDiv = styled.div`
+  b: 150px;
   position: relative;
 `;
 export const SportButton = styled.button`
@@ -191,4 +194,34 @@ export const LoginButton = styled.button`
 `;
 export const SpanText = styled.span`
   margin-left: 10px;
+`;
+
+export const textNoPay = styled.h2`
+  margin-top: 50px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 24px;
+  color: black;
+`;
+
+export const buttonNextPay = styled.button`
+  margin-top: 50px;
+  background: #39316c;
+  border-radius: 46px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #ffffff;
+  height: 30px;
+  width: 100px;
+  &:hover {
+    background: #120b3c;
+  }
+  &:active {
+    background: #3b29a2;
+  }
 `;
