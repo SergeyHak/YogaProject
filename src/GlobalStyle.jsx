@@ -31,8 +31,7 @@ body {
   height: 100%;
   font-family: 'StratosSkyeng', sans-serif;
   color: #FFFFFF;
-  margin-top: 150px;
-  background-color: #383838;
+  background-color: #fafafa;
 }
 `;
 export default GlobalStyle;

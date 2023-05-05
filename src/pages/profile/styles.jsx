@@ -1,11 +1,10 @@
 import styled from "styled-components";
 export const ContainerDiv = styled.div`
   position: relative;
-  width: 1440px;
-  height: 1440px;
+  width: 100%;
   background: #fafafa;
-  margin: 0 auto;
-  margin-top: 200px;
+  padding-left: calc(50% - 800px);
+  padding-right: calc(50% - 800px);
 `;
 export const ContentDiv = styled.div`
   margin-left: 140px;
@@ -191,4 +190,34 @@ export const LoginButton = styled.button`
 `;
 export const SpanText = styled.span`
   margin-left: 10px;
+`;
+
+export const textNoPay = styled.h2`
+  margin-top: 50px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 24px;
+  color: black;
+`;
+
+export const buttonNextPay = styled.button`
+  margin-top: 50px;
+  background: #39316c;
+  border-radius: 46px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #ffffff;
+  height: 30px;
+  width: 100px;
+  &:hover {
+    background: #120b3c;
+  }
+  &:active {
+    background: #3b29a2;
+  }
 `;

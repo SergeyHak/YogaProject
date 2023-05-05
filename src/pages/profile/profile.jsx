@@ -1,19 +1,29 @@
 import * as S from "./styles";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import ProfCard1 from "../../img/prof_card_1.png";
 import ProfCard2 from "../../img/prof_card_2.png";
 import ProfCard5 from "../../img/prof_card_5.png";
 import { UserHeader } from "../../components/userHeader/userHeader";
 import SelectWorkoutWindow from "../../components/select_workout/select_workout";
+
+
 export default function ProfilePage({ email }) {
   let login = localStorage.getItem("login");
   let pass = localStorage.getItem("pass");
+
+  const payProductYoga = useSelector((state) => state.pay.yoga);
+
   const [SelectWorkout, setSelectWorkout] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [edit, setEdit] = useState(false);
   const [valueMail, setValueMail] = useState(login);
   const [editPass, setEditPass] = useState(false);
   const [valuePass, setValuePass] = useState(pass);
+
+  const [visible, setVisible] = useState(payProductYoga);
 
   const courses = [
     { _id: "ab1c3f", img: ProfCard1 },
@@ -81,6 +91,7 @@ export default function ProfilePage({ email }) {
           </S.PassButton>
         </S.ChangeLogPassDiv>
         <S.TitleCourseSpan>Мои курсы</S.TitleCourseSpan>
+        {visible ? (
         <S.SportChoiceDiv>
           {courses.map((item) => (
             <li key={item._id}>
@@ -95,7 +106,15 @@ export default function ProfilePage({ email }) {
               </S.SportDiv>
             </li>
           ))}
-        </S.SportChoiceDiv>
+        </S.SportChoiceDiv>)
+        :
+        (<div>
+          <S.textNoPay>У вас ещё не куплена ни одного курса</S.textNoPay>
+          <Link to="/">
+            <S.buttonNextPay>Купить...</S.buttonNextPay>
+          </Link>
+        </div>)
+}
       </S.ContentDiv>
     </S.ContainerDiv>
   );
