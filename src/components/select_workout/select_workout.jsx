@@ -1,39 +1,29 @@
-import * as S from "./style"
+import * as S from "./style";
 import { Link } from "react-router-dom";
+import { workouts } from "../../data/workouts";
 
 export default function SelectWorkoutWindow() {
-    return (
-      <S.ContainerDiv>
-        <S.TitleWindowSpan>Выберите тренировку</S.TitleWindowSpan>
-        <S.ChoiceTrainingDiv>
-          <S.TrainingButton>
-          Утренняя практика 
-          <S.TextSpan>Йога на каждый день / 1 день
-          </S.TextSpan>
-          </S.TrainingButton>
-          <Link to="/lesson">
-          <S.TrainingButton>
-          Красота и здоровье
-          <S.TextSpan>Йога на каждый день / 2 день
-          </S.TextSpan>
-          </S.TrainingButton>
-          </Link>         
-          <S.TrainingButton>
-          Асаны стоя
-          <S.TextSpan>Йога на каждый день / 3 день
-          </S.TextSpan>
-          </S.TrainingButton>
-          <S.TrainingButton>
-          Растягиваем мышцы бедра 
-          <S.TextSpan>Йога на каждый день / 4 день
-          </S.TextSpan>
-          </S.TrainingButton>
-          <S.TrainingButton>
-          Гибкость спины 
-          <S.TextSpan>Йога на каждый день / 5 день
-          </S.TextSpan>
-          </S.TrainingButton>        
-        </S.ChoiceTrainingDiv>
-      </S.ContainerDiv>
-    );
-  }
+  const workoutsID = ["f4u2xs", "7konvt", "i14akb", "fw7nbq", "ni19tv"];
+
+  let selectedWorkouts = workoutsID.map((p) => workouts[p]);
+
+  return (
+    <S.ContainerDiv>
+      <S.TitleWindowSpan>Выберите тренировку</S.TitleWindowSpan>
+      <S.ChoiceTrainingDiv>
+        <ul>
+          {selectedWorkouts.map((item) => (
+            <li key={item.toString()}>
+              <Link to={`/lesson/${item._id}`}>
+                <S.TrainingButton>
+                  {item.name}
+                  <S.TextSpan>{item.title}</S.TextSpan>
+                </S.TrainingButton>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </S.ChoiceTrainingDiv>
+    </S.ContainerDiv>
+  );
+}
