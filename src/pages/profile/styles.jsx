@@ -57,7 +57,7 @@ export const ProfCardImg = styled.img`
   border-radius: 30px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Параметры тени */
 `;
-export const SportChoiceDiv = styled.div`
+export const SportChoiceDiv = styled.ul`
   padding-top: 60px;
   display: flex;
   flex-direction: row;
@@ -181,7 +181,7 @@ export const LoginButton = styled.button`
   font-feature-settings: "pnum" on, "lnum" on;
   color: #ffffff;
   height: 30px;
-    width: 100px;
+  width: 100px;
   &:hover {
     background: #120b3c;
   }

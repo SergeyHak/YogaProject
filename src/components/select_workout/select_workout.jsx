@@ -1,11 +1,17 @@
+import { useSelector } from "react-redux";
 import * as S from "./style";
 import { Link } from "react-router-dom";
-import { workouts } from "../../data/workouts";
+import { useDataBase, useDatabaseForWorkout } from "../../services/firebaseApi";
 
-export default function SelectWorkoutWindow() {
-  const workoutsID = ["f4u2xs", "7konvt", "i14akb", "fw7nbq", "ni19tv"];
+export default function SelectWorkoutWindow({ refURL }) {
+  useDataBase(refURL);
+  const workoutsID = useSelector((state) => state.courses.workouts);
 
-  let selectedWorkouts = workoutsID.map((p) => workouts[p]);
+  useDatabaseForWorkout("workouts");
+  const workouts = useSelector((state) => state.workouts.workouts);
+
+  console.log(workouts, "workouts");
+  let selectedWorkouts = workoutsID.map((p) => workouts.workouts[p]);
 
   return (
     <S.ContainerDiv>
@@ -13,7 +19,7 @@ export default function SelectWorkoutWindow() {
       <S.ChoiceTrainingDiv>
         <ul>
           {selectedWorkouts.map((item) => (
-            <li key={item.toString()}>
+            <li key={item._id}>
               <Link to={`/lesson/${item._id}`}>
                 <S.TrainingButton>
                   {item.name}

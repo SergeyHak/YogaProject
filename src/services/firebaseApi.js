@@ -2,6 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import { useDispatch } from "react-redux";
 import { setCourses } from "../store/coursesSlice";
+import { setWorkouts } from "../store/workoutsSlice";
 
 export function useDataBase(refURL) {
   const dispatch = useDispatch();
@@ -21,7 +22,25 @@ export function useDataBase(refURL) {
           workouts: data.workouts,
         })
       );
-      console.log(data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export function useDatabaseForWorkout() {
+  const dispatch = useDispatch();
+  firebase
+    .database()
+    .ref("workouts")
+    .once("value")
+    .then((snapshot) => {
+      const data = snapshot.val();
+      dispatch(
+        setWorkouts({
+          workouts: data,
+        })
+      );
     })
     .catch((error) => {
       console.error(error);
