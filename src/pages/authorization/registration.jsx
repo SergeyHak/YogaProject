@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 import { setUser } from "../../store/userSlice.js";

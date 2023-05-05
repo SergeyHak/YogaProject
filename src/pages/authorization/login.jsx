@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "@firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice.js";
 import * as S from "./style.jsx";
@@ -34,13 +34,15 @@ function Login() {
         );
         navigate("/profile", { replace: true });
       })
+
       .catch((err) => {
         console.log(err.message);
         setError(err.message);
         setIsClick(!!err.message);
       });
-    // .catch(console.error);
+   
   };
+
 
   return (
     <S.Container>

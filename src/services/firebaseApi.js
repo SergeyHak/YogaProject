@@ -1,16 +1,26 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
-import { firebaseConfig } from "../firebase";
-// const databaseURL =
-//   "https://yoga-prodject-default-rtdb.europe-west1.firebasedatabase.app";
+import { useDispatch } from "react-redux";
+import { setCourses } from "../store/coursesSlice";
 
-export function getDatabase(value) {
+export function useDataBase(refURL) {
+  const dispatch = useDispatch();
   firebase
     .database()
-    .ref(firebaseConfig.databaseURL)
-    .once(value)
+    .ref(refURL)
+    .once("value")
     .then((snapshot) => {
       const data = snapshot.val();
+      dispatch(
+        setCourses({
+          description: data.description,
+          directions: data.directions,
+          fit: data.fit,
+          id: data.id,
+          name: data.name,
+          workouts: data.workouts,
+        })
+      );
       console.log(data);
     })
     .catch((error) => {

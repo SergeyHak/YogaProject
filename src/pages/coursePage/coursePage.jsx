@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 import * as S from "./styles";
 import logo from "../../img/logoBlack.png";
 import LikesImg1 from "../../img/likes1.png";
@@ -7,12 +7,14 @@ import LikesImg2 from "../../img/likes2.png";
 import LikesImg3 from "../../img/likes3.png";
 import Handset from "../../img/handset.png";
 import backgroundProf1Url from "../../img/background_prof_1.png";
-// import { getDatabase } from "../../services/firebaseApi";
-import { getDataBase } from "../../firebase";
+import { useDataBase } from "../../services/firebaseApi";
 
-export default function CoursePage() {
-
-  getDataBase();
+export default function CoursePage({ refURL }) {
+  useDataBase(refURL);
+  const name = useSelector((state) => state.courses.name);
+  const description = useSelector((state) => state.courses.description);
+  const fit = useSelector((state) => state.courses.fit);
+  const directions = useSelector((state) => state.courses.directions);
 
   return (
     <S.Container>
@@ -27,7 +29,7 @@ export default function CoursePage() {
           style={{ backgroundImage: `url(${backgroundProf1Url})` }}
         >
           <S.SubTitleBlock>
-            <S.TitleText>Йога</S.TitleText>
+            <S.TitleText>{name}</S.TitleText>
             <S.ButtonPay>Купить курс</S.ButtonPay>
           </S.SubTitleBlock>
         </S.HeadContentBlock>
@@ -36,26 +38,19 @@ export default function CoursePage() {
           <S.LikesSubBlock>
             <S.LikesImg src={LikesImg1} alt="Likes number" />
             <S.LikesTextBlock>
-              <S.LikesText>
-                Давно хотели попробовать йогу, но не решались начать.
-              </S.LikesText>
+              <S.LikesText>{fit[0]}</S.LikesText>
             </S.LikesTextBlock>
           </S.LikesSubBlock>
           <S.LikesSubBlock>
             <S.LikesImg src={LikesImg2} alt="Likes number" />
             <S.LikesTextBlock>
-              <S.LikesText>
-                Хотите укрепить позвоночник, избавиться от болей в спине и
-                суставах.
-              </S.LikesText>
+              <S.LikesText>{fit[1]}</S.LikesText>
             </S.LikesTextBlock>
           </S.LikesSubBlock>
           <S.LikesSubBlock>
             <S.LikesImg src={LikesImg3} alt="Likes number" />
             <S.LikesTextBlock>
-              <S.LikesText>
-                Ищете активность, полезную для тела и души.
-              </S.LikesText>
+              <S.LikesText>{fit[2]}</S.LikesText>
             </S.LikesTextBlock>
           </S.LikesSubBlock>
         </S.LikesBlock>
@@ -65,27 +60,34 @@ export default function CoursePage() {
         <S.DirectionsBlock>
           <S.DirectionsSubBlock>
             <S.DirectionsList>
-              <S.DirectionsListLi>Йога для новичков</S.DirectionsListLi>
-              <S.DirectionsListLi>Классическая йога</S.DirectionsListLi>
-              <S.DirectionsListLi>Йогатерапия</S.DirectionsListLi>
+            {directions[0] && (
+                <S.DirectionsListLi>{directions[0]}</S.DirectionsListLi>
+              )}
+              {directions[1] && (
+                <S.DirectionsListLi>{directions[1]}</S.DirectionsListLi>
+              )}
+              {directions[2] && (
+                <S.DirectionsListLi>{directions[2]}</S.DirectionsListLi>
+              )}
             </S.DirectionsList>
           </S.DirectionsSubBlock>
           <S.DirectionsSubBlock>
             <S.DirectionsList>
-              <S.DirectionsListLi>Кундалини-йога</S.DirectionsListLi>
-              <S.DirectionsListLi>Хатха-йога</S.DirectionsListLi>
-              <S.DirectionsListLi>Аштанга-йога</S.DirectionsListLi>
+              {directions[3] && (
+                <S.DirectionsListLi>{directions[3]}</S.DirectionsListLi>
+              )}
+              {directions[4] && (
+                <S.DirectionsListLi>{directions[4]}</S.DirectionsListLi>
+              )}
+              {directions[5] && (
+                <S.DirectionsListLi>{directions[5]}</S.DirectionsListLi>
+              )}
             </S.DirectionsList>
           </S.DirectionsSubBlock>
         </S.DirectionsBlock>
 
         <S.InfoBlock>
-          <S.InfoText>
-            Благодаря комплексному воздействию упражнений происходит проработка
-            всех групп мышц, тренировка суставов, улучшается циркуляция крови.
-            Кроме того, упражнения дарят отличное настроение, заряжают бодростью
-            и помогают противостоять стрессам.
-          </S.InfoText>
+          <S.InfoText>{description}</S.InfoText>
         </S.InfoBlock>
 
         <S.FooterContentBlock>

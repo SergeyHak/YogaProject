@@ -5,24 +5,25 @@ import ProfCard2 from "../../img/prof_card_2.png";
 import ProfCard5 from "../../img/prof_card_5.png";
 import { UserHeader } from "../../components/userHeader/userHeader";
 import SelectWorkoutWindow from "../../components/select_workout/select_workout";
+export default function ProfilePage({email}) { 
 
-export default function ProfilePage({email}) {
- 
   let login = localStorage.getItem("login");
   let pass = localStorage.getItem('pass');
   const [SelectWorkout, setSelectWorkout] = useState(false);
   const [edit, setEdit] = useState(false);
-  const[valueMail, setValueMail] = useState(login);
+  const[valueMail, setValueMail] = useState(login);  
   const [editPass, setEditPass] = useState(false);
   const[valuePass, setValuePass] = useState(pass);
+
   const toggleTrening = () => {
     if (SelectWorkout) {
       setSelectWorkout(false);
     } else {
       setSelectWorkout(true);
     }
-  };    
-
+  };          
+ 
+  
   return (
     <S.ContainerDiv>
       {SelectWorkout === true ? (
