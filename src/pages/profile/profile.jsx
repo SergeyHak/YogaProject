@@ -12,7 +12,7 @@ import { useEmailChangeMutation } from "../../api/api";
 import { usePassChangeMutation } from "../../api/api";
 import { UserToken } from "../../api/api";
 export default function ProfilePage({ email }) {
-  const [changeEmail, { isSuccess, error }] = useEmailChangeMutation();
+  const [changeEmail] = useEmailChangeMutation();
   const [changePass] = usePassChangeMutation();
   const Tokens = UserToken();
   let login = localStorage.getItem("login");
