@@ -5,15 +5,24 @@ import ProfCard2 from "../../img/prof_card_2.png";
 import ProfCard5 from "../../img/prof_card_5.png";
 import { UserHeader } from "../../components/userHeader/userHeader";
 import SelectWorkoutWindow from "../../components/select_workout/select_workout";
-export default function ProfilePage({email}) { 
+import { useEmailChangeMutation } from "../../api/api";
+import { usePassChangeMutation } from "../../api/api";
+import { UserToken } from "../../api/api";
 
+export default function ProfilePage({ email }) {
+  const [changeEmail, { isSuccess, error }] = useEmailChangeMutation();
+  const [changePass] = usePassChangeMutation();
+
+  const Tokens = UserToken();
   let login = localStorage.getItem("login");
-  let pass = localStorage.getItem('pass');
+  let pass = localStorage.getItem("pass");
   const [SelectWorkout, setSelectWorkout] = useState(false);
   const [edit, setEdit] = useState(false);
-  const[valueMail, setValueMail] = useState(login);  
+  const [valueMail, setValueMail] = useState(login);
+  localStorage.setItem("userMail", valueMail);
   const [editPass, setEditPass] = useState(false);
-  const[valuePass, setValuePass] = useState(pass);
+  const [valuePass, setValuePass] = useState(pass);
+  localStorage.setItem("userPass", valuePass);
 
   const toggleTrening = () => {
     if (SelectWorkout) {
@@ -21,9 +30,8 @@ export default function ProfilePage({email}) {
     } else {
       setSelectWorkout(true);
     }
-  };          
- 
-  
+  };
+
   return (
     <S.ContainerDiv>
       {SelectWorkout === true ? (
@@ -36,26 +44,48 @@ export default function ProfilePage({email}) {
         <UserHeader />
         <S.SubTitleDiv>
           <S.TitleTextSpan>Мой профиль</S.TitleTextSpan>
-          <S.TitleTextSpanLogin>Логин:<S.SpanText>{valueMail}</S.SpanText> </S.TitleTextSpanLogin>
+          <S.TitleTextSpanLogin>
+            Логин:<S.SpanText>{valueMail}</S.SpanText>{" "}
+          </S.TitleTextSpanLogin>
           {edit ? (
             <div>
-              <S.UserLoginInput onChange={(e) => setValueMail(e.target.value)} value={valueMail}/>
-              <S.LoginButton onClick={() => setEdit(false)}>Сохранить</S.LoginButton>
+              <S.UserLoginInput
+                onChange={(e) =>
+                  setValueMail(e.target.value) >
+                  localStorage.setItem("userMail", valueMail)
+                }
+                value={valueMail}
+              />
+              <S.LoginButton onClick={() => changeEmail() > setEdit(false)}>
+                Сохранить
+              </S.LoginButton>
             </div>
           ) : null}
-          <S.TitleTextSpanPass>Пароль:<S.SpanText>{valuePass}</S.SpanText> </S.TitleTextSpanPass>
+          <S.TitleTextSpanPass>
+            Пароль:<S.SpanText>{valuePass}</S.SpanText>{" "}
+          </S.TitleTextSpanPass>
           {editPass ? (
             <div>
-              <S.UserLoginInput onChange={(e) => setValuePass(e.target.value)} value={valuePass}/>
-              <S.LoginButton onClick={() => setEditPass(false)}>Сохранить</S.LoginButton>
+              <S.UserLoginInput
+                onChange={(e) =>
+                  setValuePass(e.target.value) >
+                  localStorage.setItem("userPass", valuePass)
+                }
+                value={valuePass}
+              />
+              <S.LoginButton onClick={() => changePass() > setEditPass(false)}>
+                Сохранить
+              </S.LoginButton>
             </div>
           ) : null}
         </S.SubTitleDiv>
         <S.ChangeLogPassDiv>
-          <S.LogButton onClick={() => setEdit(true)}>
+          <S.LogButton onClick={() => setEdit(true) > Tokens}>
             Редактировать логин
           </S.LogButton>
-          <S.PassButton onClick={() => setEditPass(true)} >Редактировать пароль</S.PassButton>
+          <S.PassButton onClick={() => setEditPass(true) > Tokens}>
+            Редактировать пароль
+          </S.PassButton>
         </S.ChangeLogPassDiv>
         <S.TitleCourseSpan>Мои курсы</S.TitleCourseSpan>
         <S.SportChoiceDiv>
