@@ -1,10 +1,10 @@
 import styled from "styled-components";
 export const ContainerDiv = styled.div`
   position: relative;
-  width: 1440px;
-  height: 1448px;
+  width: 100%;
   background: #271a58;
-  margin: 0 auto;
+  padding-left: calc(50% - 800px);
+  padding-right: calc(50% - 800px);
 `;
 export const ContentDiv = styled.div`
   margin-left: 140px;
@@ -99,6 +99,7 @@ export const SportChoiceDiv = styled.div`
   row-gap: 44px;
 `;
 export const UpButton = styled.button`
+  margin-bottom: 50px;
   width: 147px;
   height: 48px;
   left: 646px;

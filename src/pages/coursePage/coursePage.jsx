@@ -1,15 +1,44 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDataBase } from "../../services/firebaseApi";
+import { useDispatch } from "react-redux";
+import { setPay } from "../../store/payProductSlice";
+import { useAuth } from "../../store/hooks/use-auth";
+
 import * as S from "./styles";
+
 import logo from "../../img/logoBlack.png";
 import LikesImg1 from "../../img/likes1.png";
 import LikesImg2 from "../../img/likes2.png";
 import LikesImg3 from "../../img/likes3.png";
 import Handset from "../../img/handset.png";
 import backgroundProf1Url from "../../img/background_prof_1.png";
-import { useDataBase } from "../../services/firebaseApi";
 
 export default function CoursePage({ refURL }) {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { isAuth } = useAuth();
+
+  const payCourse = () => {
+    if (isAuth === false) {
+      navigate("/login", { replace: true });
+    } else {
+      const askPay = window.confirm("Вы хотите купить данный курс?");
+      console.log(askPay);
+      if (askPay) {
+        dispatch(
+          setPay({
+            yoga: true,
+          })
+        );
+
+        navigate("/profile", { replace: true });
+      }
+    }
+  }; 
+
   useDataBase(refURL);
   const name = useSelector((state) => state.courses.name);
   const description = useSelector((state) => state.courses.description);
@@ -20,7 +49,9 @@ export default function CoursePage({ refURL }) {
     <S.Container>
       <S.ContentBlock>
         <S.TitleBlock>
-          <S.LogoImg src={logo} alt="logo" />
+          <Link to="/">
+            <S.LogoImg src={logo} alt="logo" />
+          </Link>
           <Link to="/login">
             <S.EnterButton>Войти</S.EnterButton>
           </Link>
@@ -30,7 +61,7 @@ export default function CoursePage({ refURL }) {
         >
           <S.SubTitleBlock>
             <S.TitleText>{name}</S.TitleText>
-            <S.ButtonPay>Купить курс</S.ButtonPay>
+            <S.ButtonPay onClick={payCourse}>Купить курс</S.ButtonPay>
           </S.SubTitleBlock>
         </S.HeadContentBlock>
         <S.TitleLikeText>Подойдет для вас, если:</S.TitleLikeText>
@@ -60,7 +91,7 @@ export default function CoursePage({ refURL }) {
         <S.DirectionsBlock>
           <S.DirectionsSubBlock>
             <S.DirectionsList>
-            {directions[0] && (
+              {directions[0] && (
                 <S.DirectionsListLi>{directions[0]}</S.DirectionsListLi>
               )}
               {directions[1] && (
