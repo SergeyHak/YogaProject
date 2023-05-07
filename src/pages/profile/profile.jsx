@@ -8,23 +8,25 @@ import ProfCard2 from "../../img/prof_card_2.png";
 import ProfCard5 from "../../img/prof_card_5.png";
 import { UserHeader } from "../../components/userHeader/userHeader";
 import SelectWorkoutWindow from "../../components/select_workout/select_workout";
-
-
+import { useEmailChangeMutation } from "../../api/api";
+import { usePassChangeMutation } from "../../api/api";
+import { UserToken } from "../../api/api";
 export default function ProfilePage({ email }) {
+  const [changeEmail] = useEmailChangeMutation();
+  const [changePass] = usePassChangeMutation();
+  const Tokens = UserToken();
   let login = localStorage.getItem("login");
   let pass = localStorage.getItem("pass");
-
   const payProductYoga = useSelector((state) => state.pay.yoga);
-
   const [SelectWorkout, setSelectWorkout] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [edit, setEdit] = useState(false);
   const [valueMail, setValueMail] = useState(login);
+  localStorage.setItem("userMail", valueMail);
   const [editPass, setEditPass] = useState(false);
   const [valuePass, setValuePass] = useState(pass);
-
+  localStorage.setItem("userPass", valuePass);
   const [visible, setVisible] = useState(payProductYoga);
-
   const courses = [
     { _id: "ab1c3f", img: ProfCard1 },
     { _id: "t4si4o", img: ProfCard2 },
@@ -59,10 +61,16 @@ export default function ProfilePage({ email }) {
           {edit ? (
             <div>
               <S.UserLoginInput
-                onChange={(e) => setValueMail(e.target.value)}
+
+                onChange={(e) =>
+                  setValueMail(e.target.value) >
+                  localStorage.setItem("userMail", valueMail)
+                }
                 value={valueMail}
               />
-              <S.LoginButton onClick={() => setEdit(false)}>
+              <S.LoginButton onClick={() => changeEmail() > setEdit(false)}>
+
+              
                 Сохранить
               </S.LoginButton>
             </div>
@@ -73,20 +81,29 @@ export default function ProfilePage({ email }) {
           {editPass ? (
             <div>
               <S.UserLoginInput
-                onChange={(e) => setValuePass(e.target.value)}
+
+                onChange={(e) =>
+                  setValuePass(e.target.value) >
+                  localStorage.setItem("userPass", valuePass)
+                }
                 value={valuePass}
               />
-              <S.LoginButton onClick={() => setEditPass(false)}>
+              <S.LoginButton onClick={() => changePass() > setEditPass(false)}>
+
+              
                 Сохранить
               </S.LoginButton>
             </div>
           ) : null}
         </S.SubTitleDiv>
         <S.ChangeLogPassDiv>
-          <S.LogButton onClick={() => setEdit(true)}>
+          <S.LogButton onClick={() => setEdit(true) > Tokens}>
             Редактировать логин
           </S.LogButton>
-          <S.PassButton onClick={() => setEditPass(true)}>
+
+          <S.PassButton onClick={() => setEditPass(true) > Tokens}>
+
+
             Редактировать пароль
           </S.PassButton>
         </S.ChangeLogPassDiv>
