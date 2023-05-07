@@ -1,8 +1,4 @@
-
 import firebase from "firebase/compat/app";
-// import { getAnalytics } from "firebase/analytics";
-// import firebase from "firebase/app";
-import "firebase/compat/database";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD0Y0SlGB8NLbUylBAF7-VNn0FIIIs53m4",
@@ -17,23 +13,3 @@ export const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// console.log(analytics);
-
-// const databaseURL =
-//   "https://yoga-prodject-default-rtdb.europe-west1.firebasedatabase.app";
-
-export function getDataBase() {
-  firebase
-    .database()
-    .ref("/courses/ab1c3f")
-    .once("value")
-    .then((snapshot) => {
-      const data = snapshot.val();
-      console.log(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}

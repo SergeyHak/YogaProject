@@ -1,39 +1,35 @@
-import * as S from "./style"
+import { useSelector } from "react-redux";
+import * as S from "./style";
 import { Link } from "react-router-dom";
+import { useDataBase, useDatabaseForWorkout } from "../../services/firebaseApi";
 
-export default function SelectWorkoutWindow() {
-    return (
-      <S.ContainerDiv>
-        <S.TitleWindowSpan>Выберите тренировку</S.TitleWindowSpan>
-        <S.ChoiceTrainingDiv>
-          <S.TrainingButton>
-          Утренняя практика 
-          <S.TextSpan>Йога на каждый день / 1 день
-          </S.TextSpan>
-          </S.TrainingButton>
-          <Link to="/lesson">
-          <S.TrainingButton>
-          Красота и здоровье
-          <S.TextSpan>Йога на каждый день / 2 день
-          </S.TextSpan>
-          </S.TrainingButton>
-          </Link>         
-          <S.TrainingButton>
-          Асаны стоя
-          <S.TextSpan>Йога на каждый день / 3 день
-          </S.TextSpan>
-          </S.TrainingButton>
-          <S.TrainingButton>
-          Растягиваем мышцы бедра 
-          <S.TextSpan>Йога на каждый день / 4 день
-          </S.TextSpan>
-          </S.TrainingButton>
-          <S.TrainingButton>
-          Гибкость спины 
-          <S.TextSpan>Йога на каждый день / 5 день
-          </S.TextSpan>
-          </S.TrainingButton>        
-        </S.ChoiceTrainingDiv>
-      </S.ContainerDiv>
-    );
-  }
+export default function SelectWorkoutWindow({ refURL }) {
+  useDataBase(refURL);
+  const workoutsID = useSelector((state) => state.courses.workouts);
+
+  useDatabaseForWorkout("workouts");
+  const workouts = useSelector((state) => state.workouts.workouts);
+
+  console.log(workouts, "workouts");
+  let selectedWorkouts = workoutsID.map((p) => workouts.workouts[p]);
+
+  return (
+    <S.ContainerDiv>
+      <S.TitleWindowSpan>Выберите тренировку</S.TitleWindowSpan>
+      <S.ChoiceTrainingDiv>
+        <ul>
+          {selectedWorkouts.map((item) => (
+            <li key={item._id}>
+              <Link to={`/lesson/${item._id}`}>
+                <S.TrainingButton>
+                  {item.name}
+                  <S.TextSpan>{item.title}</S.TextSpan>
+                </S.TrainingButton>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </S.ChoiceTrainingDiv>
+    </S.ContainerDiv>
+  );
+}

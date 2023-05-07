@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 1440px;
-  height: 1623px;
-  margin: 0 auto;
+  width: 100%;
   background-color: #fafafa;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  margin-bottom: 200px;
+  padding-left: calc(50% - 800px);
+  padding-right: calc(50% - 800px);
 `;
 
 export const ContentBlock = styled.div`

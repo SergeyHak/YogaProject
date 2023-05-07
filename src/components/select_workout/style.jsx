@@ -35,9 +35,9 @@ export const ChoiceTrainingDiv = styled.div`
   height: 480px;
 `;
 export const Div = styled.div`
-&:hover{
-  color: #c9eabd;
-}
+  &:hover {
+    color: #c9eabd;
+  }
 `;
 export const TrainingButton = styled.button`
   width: 278px;
@@ -55,12 +55,10 @@ export const TrainingButton = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  &:hover{
+  margin-bottom: 12px;
+  &:hover {
     color: #c9eabd;
-    border-color: #2da02d;   
-    & > span{
-      color: #c9eabd; 
-    }     
+    border-color: #2da02d;
   }
 `;
 export const TextSpan = styled.span`
@@ -69,5 +67,8 @@ export const TextSpan = styled.span`
   font-weight: 400;
   font-size: 16px;
   line-height: 18px;
-  color: #000000; 
+  color: #000000;
+  &:hover {
+    color: #c9eabd;
+  }
 `;
