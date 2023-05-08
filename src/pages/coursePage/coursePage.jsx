@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDataBase } from "../../services/firebaseApi";
 import { useDispatch } from "react-redux";
@@ -14,10 +14,10 @@ import LikesImg3 from "../../img/likes3.png";
 import Handset from "../../img/handset.png";
 import backgroundProf1Url from "../../img/background_prof_1.png";
 
-export default function CoursePage({ refURL }) {
-
+export default function CoursePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const params = useParams();
 
   const { isAuth } = useAuth();
 
@@ -37,9 +37,9 @@ export default function CoursePage({ refURL }) {
         navigate("/profile", { replace: true });
       }
     }
-  }; 
+  };
 
-  useDataBase(refURL);
+  useDataBase(`courses/${params.id}`);
   const name = useSelector((state) => state.courses.name);
   const description = useSelector((state) => state.courses.description);
   const fit = useSelector((state) => state.courses.fit);

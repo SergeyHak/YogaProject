@@ -10,7 +10,6 @@ export default function SelectWorkoutWindow({ refURL }) {
   useDatabaseForWorkout("workouts");
   const workouts = useSelector((state) => state.workouts.workouts);
 
-  console.log(workouts, "workouts");
   let selectedWorkouts = workoutsID.map((p) => workouts.workouts[p]);
 
   return (

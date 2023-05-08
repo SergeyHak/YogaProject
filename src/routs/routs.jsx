@@ -17,23 +17,7 @@ function AppRoutes() {
       <Route path="/registration" element={<Registration />} />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<MainPage />} />
-      <Route path="/yoga" element={<CoursePage refURL={"courses/ab1c3f"} />} />
-      <Route
-        path="/stretching"
-        element={<CoursePage refURL={"courses/t4si4o"} />}
-      />
-      <Route
-        path="/dance-fitness"
-        element={<CoursePage refURL={"courses/82kln2"} />}
-      />
-      <Route
-        path="/step-aerobics"
-        element={<CoursePage refURL={"courses/9jp0yg"} />}
-      />
-      <Route
-        path="/bodyflex"
-        element={<CoursePage refURL={"courses/3bu6y5"} />}
-      />
+      <Route path="/courses/:id" element={<CoursePage />} />
       <Route element={<ProtectedRoute isAllowed={isAuth} />}>
         <Route path="/lesson" element={<Lesson />} />
         <Route path="/profile" element={<ProfilePage />} />
