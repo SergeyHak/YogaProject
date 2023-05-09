@@ -35,7 +35,7 @@ function AppRoutes() {
         element={<CoursePage refURL={"courses/3bu6y5"} />}
       />
       <Route element={<ProtectedRoute isAllowed={isAuth} />}>
-        <Route path="/lesson" element={<Lesson />} />
+        <Route path="/lesson/:id" element={<Lesson />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Route>
     </Routes>

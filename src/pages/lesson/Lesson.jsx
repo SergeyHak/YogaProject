@@ -6,10 +6,13 @@ import { PopupExercises } from "../../components/popupExercises/popupExercises";
 import { UserHeader } from "../../components/userHeader/userHeader";
 import { PopupConfirm } from "../../components/popupConfirm/popupConfirm";
 import * as S from "./styles";
+import { useParams } from "react-router-dom";
+import { useDatabaseForWorkout } from "../../services/firebaseApi";
 
 export default function Lesson() {
   const [popupActive, setPopupActive] = useState(false);
   const [popupConfirmActive, setPopupConfirmActive] = useState(false);
+  const params = useParams();
 
   const HandleClickPopup = () => {
     setPopupActive(true);
@@ -24,6 +27,11 @@ export default function Lesson() {
   const exerciseThree = useSelector(
     (state) => state.exerciseProgress.exerciseThree
   );
+
+  useDatabaseForWorkout(`courses/${params.id}`);
+  const workouts = useSelector((state) => state.workouts.workouts);
+
+  console.log(workouts, "workouts");
   return (
     <S.ContainerDiv>
       <S.ContentDiv>
@@ -56,7 +64,6 @@ export default function Lesson() {
               btnName="Заполнить свой прогресс"
             />
 
-    
             {popupActive === true ? (
               <PopupExercises
                 setPopupActive={setPopupActive}
@@ -66,7 +73,6 @@ export default function Lesson() {
             {popupConfirmActive === true ? (
               <PopupConfirm setPopupConfirmActive={setPopupConfirmActive} />
             ) : null}
-
           </S.ExercisesNumber>
           <S.ProgressLesson>
             <S.TitleTextSpanLogin>
