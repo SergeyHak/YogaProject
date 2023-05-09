@@ -8,6 +8,7 @@ import { setUser } from "../../store/userSlice.js";
 import * as S from "./style";
 import logoBlack from "../../img/logoBlack.png";
 import getError from "../../data/authErrors";
+import { mutationUsersDatabase } from "../../services/mutationFirebaseUsersApi";
 
 function Registration() {
   const dispatch = useDispatch();
@@ -17,8 +18,8 @@ function Registration() {
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [isClick, setIsClick] = useState("false");
-  localStorage.setItem("login",email);
-  localStorage.setItem('pass',pass);
+  localStorage.setItem("login", email);
+  localStorage.setItem("pass", pass);
 
   const handleLogin = () => {
     const auth = getAuth();
@@ -31,6 +32,7 @@ function Registration() {
             token: user.accessToken,
           })
         );
+        mutationUsersDatabase(user.email);
         navigate("/profile", { replace: true });
       })
 
@@ -39,7 +41,6 @@ function Registration() {
         setError(err.message);
         setIsClick(!!err.message);
       });
-    
   };
 
   return (
@@ -68,9 +69,7 @@ function Registration() {
         />
         {/* <S.Inputs type="password" placeholder="Повторить пароль" /> */}
         <S.ErrorBox>
-          <S.ErrorMessage>
-            {getError(error, isClick)}
-          </S.ErrorMessage>
+          <S.ErrorMessage>{getError(error, isClick)}</S.ErrorMessage>
         </S.ErrorBox>
         <S.OstiumButton onClick={handleLogin}>
           Зарегистрироваться
