@@ -5,6 +5,7 @@ const initialState = {
   directions: [],
   fit: [],
   id: null,
+  img: null,
   name: null,
   workouts: [],
 };
@@ -17,6 +18,7 @@ const coursesSlice = createSlice({
       state.directions = action.payload.directions;
       state.fit = action.payload.fit;
       state.id = action.payload.id;
+      state.img = action.payload.img;
       state.name = action.payload.name;
       state.workouts = action.payload.workouts;
     },
