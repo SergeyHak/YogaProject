@@ -221,3 +221,12 @@ export const buttonNextPay = styled.button`
     background: #3b29a2;
   }
 `;
+export const ErrorSpan = styled.span`
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.8px;
+  color: red;
+`;

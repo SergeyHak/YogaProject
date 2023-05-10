@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../store/hooks/use-auth";
 
 import * as S from "./styles";
+import * as A from "../../components/userHeader/styles";
 import logo from "../../img/logo.png";
 import SaleSticker from "../../img/Sale_sticker.png";
+import UserPhoto from "../../img/EllipsePhoto.png";
+
 import ProfCard1 from "../../img/prof_card_1.png";
 import ProfCard2 from "../../img/prof_card_2.png";
 import ProfCard3 from "../../img/prof_card_3.png";
@@ -17,15 +21,25 @@ const courses = [
   { id: "3bu6y5", img: ProfCard5 },
 ];
 
+
 export default function MainPage() {
+  const { isAuth } = useAuth();
+
   return (
     <S.ContainerDiv>
       <S.ContentDiv>
         <S.LogoTitleDiv>
           <S.LogoImg src={logo} alt="logo" />
-          <Link to="/login">
+          {isAuth ?
+          (<A.UserDiv>
+            <A.UserPhotoImg src={UserPhoto} alt="userphoto" />
+            <A.UserNameSpan  >Сергей ↓</A.UserNameSpan>
+          </A.UserDiv>)
+          :
+          (<Link to="/login">
             <S.EnterButton>Войти</S.EnterButton>
-          </Link>
+          </Link>)
+          }
         </S.LogoTitleDiv>
         <S.HeadContentDiv>
           <S.SubTitleDiv>
