@@ -2,11 +2,7 @@ import * as S from "./styles";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import ProfCard1 from "../../img/prof_card_1.png";
-// import ProfCard2 from "../../img/prof_card_2.png";
-// import ProfCard3 from "../../img/prof_card_3.png";
-// import ProfCard4 from "../../img/prof_card_4.png";
-// import ProfCard5 from "../../img/prof_card_5.png";
+
 import { UserHeader } from "../../components/userHeader/userHeader";
 import SelectWorkoutWindow from "../../components/select_workout/select_workout";
 import { useEmailChangeMutation } from "../../api/api";
@@ -29,19 +25,13 @@ export default function ProfilePage() {
   const [editPass, setEditPass] = useState(false);
   const [valuePass, setValuePass] = useState(pass);
   localStorage.setItem("userPass", valuePass);
-  // const [visible, setVisible] = useState(payProductYoga);
-  // const courses = [
-  //   { _id: "ab1c3f", img: ProfCard1 },
-  //   { _id: "t4si4o", img: ProfCard2 },
-  //   { _id: "3bu6y5", img: ProfCard5 },
-  // ];
+
   const emailPath = login.replace(/\./g, "-");
   useQueryUsersCourseDatabase(emailPath);
   const courses = useSelector((state) => state.userData.user_courses);
-  // const [selectedCourse, setSelectedCourse] = useState("");
-
+ 
   const toggleTraining = (course) => {
-    // setSelectedCourse(course);
+    
     localStorage.setItem("selectedCourse", course);
 
     if (SelectWorkout) {
@@ -51,7 +41,7 @@ export default function ProfilePage() {
     }
     
   };
-  console.log(error)
+  
   return (
     <S.ContainerDiv>
       {SelectWorkout === true ? (
