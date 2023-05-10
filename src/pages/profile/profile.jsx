@@ -2,43 +2,54 @@ import * as S from "./styles";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ProfCard1 from "../../img/prof_card_1.png";
-import ProfCard2 from "../../img/prof_card_2.png";
-import ProfCard5 from "../../img/prof_card_5.png";
+// import ProfCard1 from "../../img/prof_card_1.png";
+// import ProfCard2 from "../../img/prof_card_2.png";
+// import ProfCard3 from "../../img/prof_card_3.png";
+// import ProfCard4 from "../../img/prof_card_4.png";
+// import ProfCard5 from "../../img/prof_card_5.png";
 import { UserHeader } from "../../components/userHeader/userHeader";
 import SelectWorkoutWindow from "../../components/select_workout/select_workout";
 import { useEmailChangeMutation } from "../../api/api";
 import { usePassChangeMutation } from "../../api/api";
 import { UserToken } from "../../api/api";
-export default function ProfilePage({ email }) {
-  const [changeEmail, {error, isLoading }] = useEmailChangeMutation();
+import { useQueryUsersCourseDatabase } from "../../services/queryFirebaseUsersApi";
+
+export default function ProfilePage() {
+   const [changeEmail, {error, isLoading }] = useEmailChangeMutation();
   const [changePass] = usePassChangeMutation();
   const Tokens = UserToken();
   let login = localStorage.getItem("login");
   let pass = localStorage.getItem("pass");
-  const payProductYoga = useSelector((state) => state.pay.yoga);
+  // const payProductYoga = useSelector((state) => state.pay.yoga);
   const [SelectWorkout, setSelectWorkout] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState("");
+
   const [edit, setEdit] = useState(false);
   const [valueMail, setValueMail] = useState(login);
   localStorage.setItem("userMail", valueMail);
   const [editPass, setEditPass] = useState(false);
   const [valuePass, setValuePass] = useState(pass);
   localStorage.setItem("userPass", valuePass);
-  const [visible, setVisible] = useState(payProductYoga);
-  const courses = [
-    { _id: "ab1c3f", img: ProfCard1 },
-    { _id: "t4si4o", img: ProfCard2 },
-    { _id: "3bu6y5", img: ProfCard5 },
-  ];
+  // const [visible, setVisible] = useState(payProductYoga);
+  // const courses = [
+  //   { _id: "ab1c3f", img: ProfCard1 },
+  //   { _id: "t4si4o", img: ProfCard2 },
+  //   { _id: "3bu6y5", img: ProfCard5 },
+  // ];
+  const emailPath = login.replace(/\./g, "-");
+  useQueryUsersCourseDatabase(emailPath);
+  const courses = useSelector((state) => state.userData.user_courses);
+  // const [selectedCourse, setSelectedCourse] = useState("");
 
-  const toggleTrening = (_id) => {
+  const toggleTraining = (course) => {
+    // setSelectedCourse(course);
+    localStorage.setItem("selectedCourse", course);
+
     if (SelectWorkout) {
       setSelectWorkout(false);
     } else {
       setSelectWorkout(true);
     }
-    setSelectedCourse(_id);
+    
   };
   console.log(error)
   return (
@@ -47,7 +58,7 @@ export default function ProfilePage({ email }) {
         <SelectWorkoutWindow
           active={SelectWorkout}
           setActive={setSelectWorkout}
-          refURL={`courses/${selectedCourse}`}
+          refURL={`courses/${localStorage.getItem("selectedCourse")}`}
         />
       ) : null}
       <S.ContentDiv>     
@@ -106,15 +117,18 @@ export default function ProfilePage({ email }) {
           </S.PassButton>
         </S.ChangeLogPassDiv>
         <S.TitleCourseSpan>Мои курсы</S.TitleCourseSpan>
-        {visible ? (
+        {courses ? (
           <S.SportChoiceDiv>
-            {courses.map((item) => (
-              <li key={item._id}>
+            {Object.entries(courses).map((item) => (
+              <li key={item[0]}>
                 <S.SportDiv>
-                  <S.ProfCardImg src={item.img} alt="prof_card" />
+                  <S.ProfCardImg
+                    src={require(`../../img/${item[1].img}`)}
+                    alt="prof_card"
+                  />
                   <S.SportButton
-                    refURL={`courses/${item._id}`}
-                    onClick={() => toggleTrening(item._id)}
+                    // refURL={`courses/${item._id}`}
+                    onClick={() => toggleTraining(item[0])}
                   >
                     Перейти →
                   </S.SportButton>
@@ -124,7 +138,7 @@ export default function ProfilePage({ email }) {
           </S.SportChoiceDiv>
         ) : (
           <div>
-            <S.textNoPay>У вас ещё не куплена ни одного курса</S.textNoPay>
+            <S.textNoPay>У вас ещё не куплено ни одного курса</S.textNoPay>
             <Link to="/">
               <S.buttonNextPay>Купить...</S.buttonNextPay>
             </Link>

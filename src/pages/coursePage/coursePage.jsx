@@ -13,31 +13,33 @@ import LikesImg2 from "../../img/likes2.png";
 import LikesImg3 from "../../img/likes3.png";
 import Handset from "../../img/handset.png";
 import backgroundProf1Url from "../../img/background_prof_1.png";
+import { mutationUsersCourseDatabase } from "../../services/mutationFirebaseUsersApi";
 
 export default function CoursePage({ refURL }) {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { isAuth } = useAuth();
-
+  const id = useSelector((state) => state.courses.id);
+  const img = useSelector((state) => state.courses.img);
+  
   const payCourse = () => {
     if (isAuth === false) {
       navigate("/login", { replace: true });
     } else {
       const askPay = window.confirm("Вы хотите купить данный курс?");
-      console.log(askPay);
+      // console.log(askPay);
       if (askPay) {
         dispatch(
           setPay({
             yoga: true,
           })
         );
-
+        mutationUsersCourseDatabase(localStorage.getItem("login"), id, img);
         navigate("/profile", { replace: true });
       }
     }
-  }; 
+  };
 
   useDataBase(refURL);
   const name = useSelector((state) => state.courses.name);
