@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDataBase } from "../../services/firebaseApi";
 import { useDispatch } from "react-redux";
@@ -16,9 +16,11 @@ import backgroundProf1Url from "../../img/background_prof_1.png";
 import { mutationUsersCourseDatabase } from "../../services/mutationFirebaseUsersApi";
 import { UserHeader } from "../../components/userHeader/userHeader";
 
-export default function CoursePage({ refURL }) {
+export default function CoursePage() {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const params = useParams();
 
   const { isAuth } = useAuth();
   const id = useSelector((state) => state.courses.id);
@@ -42,7 +44,7 @@ export default function CoursePage({ refURL }) {
     }
   };
 
-  useDataBase(refURL);
+  useDataBase(`courses/${params.id}`);
   const name = useSelector((state) => state.courses.name);
   const description = useSelector((state) => state.courses.description);
   const fit = useSelector((state) => state.courses.fit);
