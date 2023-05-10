@@ -2,7 +2,6 @@ import * as S from "./styles";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 // import ProfCard1 from "../../img/prof_card_1.png";
 // import ProfCard2 from "../../img/prof_card_2.png";
 // import ProfCard3 from "../../img/prof_card_3.png";
@@ -16,7 +15,7 @@ import { UserToken } from "../../api/api";
 import { useQueryUsersCourseDatabase } from "../../services/queryFirebaseUsersApi";
 
 export default function ProfilePage() {
-  const [changeEmail] = useEmailChangeMutation();
+   const [changeEmail, {error, isLoading }] = useEmailChangeMutation();
   const [changePass] = usePassChangeMutation();
   const Tokens = UserToken();
   let login = localStorage.getItem("login");
@@ -52,7 +51,7 @@ export default function ProfilePage() {
     }
     
   };
-
+  console.log(error)
   return (
     <S.ContainerDiv>
       {SelectWorkout === true ? (
@@ -62,13 +61,19 @@ export default function ProfilePage() {
           refURL={`courses/${localStorage.getItem("selectedCourse")}`}
         />
       ) : null}
-      <S.ContentDiv>
+      <S.ContentDiv>     
         <UserHeader />
         <S.SubTitleDiv>
           <S.TitleTextSpan>Мой профиль</S.TitleTextSpan>
           <S.TitleTextSpanLogin>
             Логин:<S.SpanText>{valueMail}</S.SpanText>{" "}
-          </S.TitleTextSpanLogin>
+          </S.TitleTextSpanLogin>   
+          {error ? (
+          <S.ErrorSpan>{error.status}</S.ErrorSpan>
+          ):(
+            isLoading            
+          )
+          }        
           {edit ? (
             <div>
               <S.UserLoginInput
@@ -76,11 +81,12 @@ export default function ProfilePage() {
                   setValueMail(e.target.value) >
                   localStorage.setItem("userMail", valueMail)
                 }
-                value={valueMail}
-              />
+                value={valueMail}              
+              />              
               <S.LoginButton onClick={() => changeEmail() > setEdit(false)}>
                 Сохранить
               </S.LoginButton>
+
             </div>
           ) : null}
           <S.TitleTextSpanPass>
