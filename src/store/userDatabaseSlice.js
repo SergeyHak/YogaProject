@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 /* eslint-disable no-param-reassign */
 const initialState = {
   user_email: null,
-  courses: {},
+  user_courses: {},
   user_workouts: {},
 };
 const userDataSlice = createSlice({
@@ -11,7 +11,7 @@ const userDataSlice = createSlice({
   reducers: {
     setUserData(state, action) {
       state.user_email = action.payload.user_email;
-      state.courses = action.payload.courses;
+      state.user_courses = action.payload.user_courses;
       state.user_workouts = action.payload.user_workouts;
     },
   },

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setUserData } from "../store/userDatabaseSlice";
 
 export function useQueryUsersCourseDatabase(refURL) {
-  console.log(refURL);
+  
   const dispatch = useDispatch();
   firebase
     .database()
@@ -12,11 +12,11 @@ export function useQueryUsersCourseDatabase(refURL) {
     .once("value")
     .then((snapshot) => {
       const data = snapshot.val();
-      console.log(data);
+     
       dispatch(
         setUserData({
           user_email: data.user_email,
-          courses: data.courses,
+          user_courses: data.courses,
           user_workouts: data.workouts,
         })
       );

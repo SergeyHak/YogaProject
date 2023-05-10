@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import ProfCard1 from "../../img/prof_card_1.png";
-import ProfCard2 from "../../img/prof_card_2.png";
-import ProfCard3 from "../../img/prof_card_3.png";
-import ProfCard4 from "../../img/prof_card_4.png";
-import ProfCard5 from "../../img/prof_card_5.png";
+// import ProfCard1 from "../../img/prof_card_1.png";
+// import ProfCard2 from "../../img/prof_card_2.png";
+// import ProfCard3 from "../../img/prof_card_3.png";
+// import ProfCard4 from "../../img/prof_card_4.png";
+// import ProfCard5 from "../../img/prof_card_5.png";
 import { UserHeader } from "../../components/userHeader/userHeader";
 import SelectWorkoutWindow from "../../components/select_workout/select_workout";
 import { useEmailChangeMutation } from "../../api/api";
@@ -23,7 +23,7 @@ export default function ProfilePage() {
   let pass = localStorage.getItem("pass");
   // const payProductYoga = useSelector((state) => state.pay.yoga);
   const [SelectWorkout, setSelectWorkout] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState("");
+
   const [edit, setEdit] = useState(false);
   const [valueMail, setValueMail] = useState(login);
   localStorage.setItem("userMail", valueMail);
@@ -37,26 +37,29 @@ export default function ProfilePage() {
   //   { _id: "3bu6y5", img: ProfCard5 },
   // ];
   const emailPath = login.replace(/\./g, "-");
-
   useQueryUsersCourseDatabase(emailPath);
-  const courses = useSelector((state) => state.userData.courses);
-  
-  // const toggleTrening = (_id) => {
-  //   if (SelectWorkout) {
-  //     setSelectWorkout(false);
-  //   } else {
-  //     setSelectWorkout(true);
-  //   }
-  //   setSelectedCourse(_id);
-  // };
-  
+  const courses = useSelector((state) => state.userData.user_courses);
+  // const [selectedCourse, setSelectedCourse] = useState("");
+
+  const toggleTraining = (course) => {
+    // setSelectedCourse(course);
+    localStorage.setItem("selectedCourse", course);
+
+    if (SelectWorkout) {
+      setSelectWorkout(false);
+    } else {
+      setSelectWorkout(true);
+    }
+    
+  };
+
   return (
     <S.ContainerDiv>
       {SelectWorkout === true ? (
         <SelectWorkoutWindow
           active={SelectWorkout}
           setActive={setSelectWorkout}
-          refURL={`courses/${selectedCourse}`}
+          refURL={`courses/${localStorage.getItem("selectedCourse")}`}
         />
       ) : null}
       <S.ContentDiv>
@@ -108,16 +111,18 @@ export default function ProfilePage() {
           </S.PassButton>
         </S.ChangeLogPassDiv>
         <S.TitleCourseSpan>Мои курсы</S.TitleCourseSpan>
-        {Object.keys(courses) ? (
+        {courses ? (
           <S.SportChoiceDiv>
             {Object.entries(courses).map((item) => (
               <li key={item[0]}>
                 <S.SportDiv>
-                  <S.ProfCardImg src={item[1].img} alt="prof_card" />  
+                  <S.ProfCardImg
+                    src={require(`../../img/${item[1].img}`)}
+                    alt="prof_card"
+                  />
                   <S.SportButton
-                  // пока не решил проблему 
-                  // refURL={`courses/${item._id}`}
-                  // onClick={() => toggleTrening(item._id)}
+                    // refURL={`courses/${item._id}`}
+                    onClick={() => toggleTraining(item[0])}
                   >
                     Перейти →
                   </S.SportButton>
