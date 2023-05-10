@@ -2,7 +2,6 @@ import * as S from "./styles";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import ProfCard1 from "../../img/prof_card_1.png";
 import ProfCard2 from "../../img/prof_card_2.png";
 import ProfCard5 from "../../img/prof_card_5.png";
@@ -12,7 +11,7 @@ import { useEmailChangeMutation } from "../../api/api";
 import { usePassChangeMutation } from "../../api/api";
 import { UserToken } from "../../api/api";
 export default function ProfilePage({ email }) {
-  const [changeEmail] = useEmailChangeMutation();
+  const [changeEmail, {error, isLoading }] = useEmailChangeMutation();
   const [changePass] = usePassChangeMutation();
   const Tokens = UserToken();
   let login = localStorage.getItem("login");
@@ -41,7 +40,7 @@ export default function ProfilePage({ email }) {
     }
     setSelectedCourse(_id);
   };
-
+  console.log(error)
   return (
     <S.ContainerDiv>
       {SelectWorkout === true ? (
@@ -51,28 +50,32 @@ export default function ProfilePage({ email }) {
           refURL={`courses/${selectedCourse}`}
         />
       ) : null}
-      <S.ContentDiv>
+      <S.ContentDiv>     
         <UserHeader />
         <S.SubTitleDiv>
           <S.TitleTextSpan>Мой профиль</S.TitleTextSpan>
           <S.TitleTextSpanLogin>
             Логин:<S.SpanText>{valueMail}</S.SpanText>{" "}
-          </S.TitleTextSpanLogin>
+          </S.TitleTextSpanLogin>   
+          {error ? (
+          <S.ErrorSpan>{error.status}</S.ErrorSpan>
+          ):(
+            isLoading            
+          )
+          }        
           {edit ? (
             <div>
               <S.UserLoginInput
-
                 onChange={(e) =>
                   setValueMail(e.target.value) >
                   localStorage.setItem("userMail", valueMail)
                 }
-                value={valueMail}
-              />
+                value={valueMail}              
+              />              
               <S.LoginButton onClick={() => changeEmail() > setEdit(false)}>
-
-              
                 Сохранить
               </S.LoginButton>
+
             </div>
           ) : null}
           <S.TitleTextSpanPass>
@@ -81,7 +84,6 @@ export default function ProfilePage({ email }) {
           {editPass ? (
             <div>
               <S.UserLoginInput
-
                 onChange={(e) =>
                   setValuePass(e.target.value) >
                   localStorage.setItem("userPass", valuePass)
@@ -89,8 +91,6 @@ export default function ProfilePage({ email }) {
                 value={valuePass}
               />
               <S.LoginButton onClick={() => changePass() > setEditPass(false)}>
-
-              
                 Сохранить
               </S.LoginButton>
             </div>
@@ -102,36 +102,34 @@ export default function ProfilePage({ email }) {
           </S.LogButton>
 
           <S.PassButton onClick={() => setEditPass(true) > Tokens}>
-
-
             Редактировать пароль
           </S.PassButton>
         </S.ChangeLogPassDiv>
         <S.TitleCourseSpan>Мои курсы</S.TitleCourseSpan>
         {visible ? (
-        <S.SportChoiceDiv>
-          {courses.map((item) => (
-            <li key={item._id}>
-              <S.SportDiv>
-                <S.ProfCardImg src={item.img} alt="prof_card" />
-                <S.SportButton
-                  refURL={`courses/${item._id}`}
-                  onClick={() => toggleTrening(item._id)}
-                >
-                  Перейти →
-                </S.SportButton>
-              </S.SportDiv>
-            </li>
-          ))}
-        </S.SportChoiceDiv>)
-        :
-        (<div>
-          <S.textNoPay>У вас ещё не куплена ни одного курса</S.textNoPay>
-          <Link to="/">
-            <S.buttonNextPay>Купить...</S.buttonNextPay>
-          </Link>
-        </div>)
-}
+          <S.SportChoiceDiv>
+            {courses.map((item) => (
+              <li key={item._id}>
+                <S.SportDiv>
+                  <S.ProfCardImg src={item.img} alt="prof_card" />
+                  <S.SportButton
+                    refURL={`courses/${item._id}`}
+                    onClick={() => toggleTrening(item._id)}
+                  >
+                    Перейти →
+                  </S.SportButton>
+                </S.SportDiv>
+              </li>
+            ))}
+          </S.SportChoiceDiv>
+        ) : (
+          <div>
+            <S.textNoPay>У вас ещё не куплена ни одного курса</S.textNoPay>
+            <Link to="/">
+              <S.buttonNextPay>Купить...</S.buttonNextPay>
+            </Link>
+          </div>
+        )}
       </S.ContentDiv>
     </S.ContainerDiv>
   );
