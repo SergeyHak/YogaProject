@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDataBase } from "../../services/firebaseApi";
 import { useDispatch } from "react-redux";
@@ -7,39 +7,44 @@ import { useAuth } from "../../store/hooks/use-auth";
 
 import * as S from "./styles";
 
-import logo from "../../img/logoBlack.png";
+
 import LikesImg1 from "../../img/likes1.png";
 import LikesImg2 from "../../img/likes2.png";
 import LikesImg3 from "../../img/likes3.png";
 import Handset from "../../img/handset.png";
 import backgroundProf1Url from "../../img/background_prof_1.png";
+import { mutationUsersCourseDatabase } from "../../services/mutationFirebaseUsersApi";
+import { UserHeader } from "../../components/userHeader/userHeader";
 
-export default function CoursePage({ refURL }) {
+export default function CoursePage() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const params = useParams();
 
   const { isAuth } = useAuth();
-
+  const id = useSelector((state) => state.courses.id);
+  const img = useSelector((state) => state.courses.img);
+  
   const payCourse = () => {
     if (isAuth === false) {
       navigate("/login", { replace: true });
     } else {
       const askPay = window.confirm("Вы хотите купить данный курс?");
-      console.log(askPay);
+      // console.log(askPay);
       if (askPay) {
         dispatch(
           setPay({
             yoga: true,
           })
         );
-
+        mutationUsersCourseDatabase(localStorage.getItem("login"), id, img);
         navigate("/profile", { replace: true });
       }
     }
-  }; 
+  };
 
-  useDataBase(refURL);
+  useDataBase(`courses/${params.id}`);
   const name = useSelector((state) => state.courses.name);
   const description = useSelector((state) => state.courses.description);
   const fit = useSelector((state) => state.courses.fit);
@@ -48,14 +53,7 @@ export default function CoursePage({ refURL }) {
   return (
     <S.Container>
       <S.ContentBlock>
-        <S.TitleBlock>
-          <Link to="/">
-            <S.LogoImg src={logo} alt="logo" />
-          </Link>
-          <Link to="/login">
-            <S.EnterButton>Войти</S.EnterButton>
-          </Link>
-        </S.TitleBlock>
+        <UserHeader/>
         <S.HeadContentBlock
           style={{ backgroundImage: `url(${backgroundProf1Url})` }}
         >

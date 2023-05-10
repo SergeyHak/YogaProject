@@ -17,7 +17,8 @@ export function useDataBase(refURL) {
           description: data.description,
           directions: data.directions,
           fit: data.fit,
-          id: data.id,
+          id: data._id,
+          img: data.img,
           name: data.name,
           workouts: data.workouts,
         })
