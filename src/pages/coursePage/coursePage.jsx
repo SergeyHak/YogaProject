@@ -1,13 +1,8 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDataBase } from "../../services/firebaseApi";
-import { useDispatch } from "react-redux";
-import { setPay } from "../../store/payProductSlice";
 import { useAuth } from "../../store/hooks/use-auth";
-
 import * as S from "./styles";
-
-
 import LikesImg1 from "../../img/likes1.png";
 import LikesImg2 from "../../img/likes2.png";
 import LikesImg3 from "../../img/likes3.png";
@@ -17,27 +12,34 @@ import { mutationUsersCourseDatabase } from "../../services/mutationFirebaseUser
 import { UserHeader } from "../../components/userHeader/userHeader";
 
 export default function CoursePage() {
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-
+  const courses = useSelector((state) => state.userData.user_courses);
   const { isAuth } = useAuth();
   const id = useSelector((state) => state.courses.id);
   const img = useSelector((state) => state.courses.img);
-  
+
+  function checkPayCourse(idCourse, payCourses) {
+    let isPay = false;
+    if (idCourse && payCourses) {
+      Object.entries(payCourses).forEach((element) => {
+        if (idCourse === element[0]) {
+          isPay = true;
+        }
+      });
+    }
+    return isPay;
+  }
+
   const payCourse = () => {
     if (isAuth === false) {
       navigate("/login", { replace: true });
+    } else if (checkPayCourse(id, courses) === true) {
+      alert("Этот курс вами уже приобретён ранее.");
     } else {
       const askPay = window.confirm("Вы хотите купить данный курс?");
-      // console.log(askPay);
+
       if (askPay) {
-        dispatch(
-          setPay({
-            yoga: true,
-          })
-        );
         mutationUsersCourseDatabase(localStorage.getItem("login"), id, img);
         navigate("/profile", { replace: true });
       }
@@ -53,7 +55,7 @@ export default function CoursePage() {
   return (
     <S.Container>
       <S.ContentBlock>
-        <UserHeader/>
+        <UserHeader />
         <S.HeadContentBlock
           style={{ backgroundImage: `url(${backgroundProf1Url})` }}
         >
