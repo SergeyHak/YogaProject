@@ -12,13 +12,13 @@ export const Container = styled.div`
 `;
 
 export const PopupContent = styled.div`
-  height: 554px;
   width: 444px;
   background-color: #f5f5f5;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 10px;
 `;
 
 export const PopupTitle = styled.div`

@@ -18,108 +18,129 @@ export default function Lesson() {
     setPopupActive(true);
   };
 
-  const exerciseOne = useSelector(
-    (state) => state.exerciseProgress.exerciseOne
-  );
-  const exerciseTwo = useSelector(
-    (state) => state.exerciseProgress.exerciseTwo
-  );
-  const exerciseThree = useSelector(
-    (state) => state.exerciseProgress.exerciseThree
-  );
-
-  useDatabaseForWorkout(`courses/${params.id}`);
+  useDatabaseForWorkout("workouts");
   const workouts = useSelector((state) => state.workouts.workouts);
+  const exercisesValues = useSelector(
+    (state) => state.exerciseCount.exerciseCount
+  );
 
-  console.log(workouts, "workouts");
+  let lesson = [];
+  let listExercises = [];
+  if (typeof workouts.workouts !== "undefined") {
+    lesson = workouts.workouts[params.id];
+    listExercises = lesson.exercises;
+  }
+
+  let listExercisesSorted = [];
+
+  if (typeof listExercises[0] !== "undefined") {
+    listExercisesSorted = listExercises.map((exerciseString, index) => {
+      let title = listExercises[index].split("(")[0];
+      const colorAll = ["blue", "orange", "purple"];
+      const color = index % 3;
+
+      let count = parseInt(listExercises[index].match(/\d+/));
+      return { count: count, title: title, color: colorAll[color] };
+    });
+  }
+
   return (
     <S.ContainerDiv>
       <S.ContentDiv>
         <UserHeader />
-        <S.TitleText>Йога</S.TitleText>
+        <S.TitleText>{lesson.course}</S.TitleText>
         <S.TitleWorkout>
-          Красота и здоровье/ Йога на каждый день/ 2 день
+          {lesson.name}
+          {lesson.title}
         </S.TitleWorkout>
         <S.WorkoutVideo>
           <iframe
             width="1160"
             height="639"
-            src="https://www.youtube.com/embed/v-xTLFDhoD0"
+            src={lesson.video}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           ></iframe>
         </S.WorkoutVideo>
         <S.BlockProgressLesson>
-          <S.ExercisesNumber>
-            <S.TitleTextSpanLogin>Упражнения</S.TitleTextSpanLogin>
-            <S.TextExercisesRepetitions>
-              <S.TextLi>Наклон вперед (10 повторений)</S.TextLi>
-              <S.TextLi> Наклон назад (10 повторений)</S.TextLi>
-              <S.TextLi>
-                Поднятие ног, согнутых в коленях (5 повторений)
-              </S.TextLi>
-            </S.TextExercisesRepetitions>
-            <Button
-              onClick={HandleClickPopup}
-              btnName="Заполнить свой прогресс"
-            />
-
-            {popupActive === true ? (
-              <PopupExercises
-                setPopupActive={setPopupActive}
-                setPopupConfirmActive={setPopupConfirmActive}
+          {typeof listExercises[0] !== "undefined" && listExercises !== [] ? (
+            <S.ExercisesNumber>
+              <S.TitleTextSpanLogin>Упражнения</S.TitleTextSpanLogin>
+              <S.TextExercisesRepetitions>
+                {listExercises.map((item) => (
+                  <S.TextLi key={item}>{item}</S.TextLi>
+                ))}
+              </S.TextExercisesRepetitions>
+              <Button
+                onClick={HandleClickPopup}
+                btnName="Заполнить свой прогресс"
               />
-            ) : null}
-            {popupConfirmActive === true ? (
-              <PopupConfirm setPopupConfirmActive={setPopupConfirmActive} />
-            ) : null}
-          </S.ExercisesNumber>
-          <S.ProgressLesson>
-            <S.TitleTextSpanLogin>
-              Мой прогресс по тренировке 2:
-            </S.TitleTextSpanLogin>
-            <S.BlockAllExercises>
-              <S.BlockProgress>
-                <S.NameExerciseProgress>Наклоны вперед</S.NameExerciseProgress>
-                <S.VisuallyProgressOne
-                  name="one"
-                  type="range"
-                  min="0"
-                  max="10"
-                  step="1"
-                  value={exerciseOne || ""}
-                  readOnly
-                />
-              </S.BlockProgress>
-              <S.BlockProgress>
-                <S.NameExerciseProgress>Наклоны назад</S.NameExerciseProgress>
-                <S.VisuallyProgressTwo
-                  name="two"
-                  type="range"
-                  min="0"
-                  max="10"
-                  step="1"
-                  value={exerciseTwo || ""}
-                  readOnly
-                />
-              </S.BlockProgress>
-              <S.BlockProgress>
-                <S.NameExerciseProgress>
-                  Поднятие ног, согнутых в коленях
-                </S.NameExerciseProgress>
-                <S.VisuallyProgressThree
-                  name="three"
-                  type="range"
-                  min="0"
-                  max="5"
-                  step="1"
-                  value={exerciseThree || ""}
-                  readOnly
-                />
-              </S.BlockProgress>
-            </S.BlockAllExercises>
-          </S.ProgressLesson>
+            </S.ExercisesNumber>
+          ) : null}
+          {typeof listExercises[0] !== "undefined" &&
+          listExercisesSorted !== [] ? (
+            <S.ProgressLesson>
+              <S.TitleTextSpanLogin>
+                Мой прогресс по тренировке 2:
+              </S.TitleTextSpanLogin>
+              <S.BlockAllExercises>
+                {listExercisesSorted.map((item, ind) => (
+                  <S.BlockProgress>
+                    <S.NameExerciseProgress>
+                      {item.title}
+                    </S.NameExerciseProgress>
+                    <S.InputMaster>
+                      {item.color === "blue" ? (
+                        <S.VisuallyProgressBlue
+                          name={item}
+                          type="range"
+                          min="0"
+                          max={item.count}
+                          step="1"
+                          value={exercisesValues[ind]}
+                          readOnly
+                        />
+                      ) : null}
+                      {item.color === "orange" ? (
+                        <S.VisuallyProgressOrange
+                          name={item}
+                          type="range"
+                          min="0"
+                          max={item.count}
+                          step="1"
+                          value={exercisesValues[ind]}
+                          readOnly
+                        />
+                      ) : null}
+                      {item.color === "purple" ? (
+                        <S.VisuallyProgressPurple
+                          name={item}
+                          type="range"
+                          min="0"
+                          max={item.count}
+                          step="1"
+                          value={exercisesValues[ind]}
+                          readOnly
+                        />
+                      ) : null}
+                    </S.InputMaster>
+                  </S.BlockProgress>
+                ))}
+              </S.BlockAllExercises>
+            </S.ProgressLesson>
+          ) : null}
         </S.BlockProgressLesson>
+
+        {popupActive === true ? (
+          <PopupExercises
+            setPopupActive={setPopupActive}
+            setPopupConfirmActive={setPopupConfirmActive}
+            label={listExercises}
+          />
+        ) : null}
+        {popupConfirmActive === true ? (
+          <PopupConfirm setPopupConfirmActive={setPopupConfirmActive} />
+        ) : null}
       </S.ContentDiv>
     </S.ContainerDiv>
   );
