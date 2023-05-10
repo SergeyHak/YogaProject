@@ -55,11 +55,10 @@ export const BlockProgressLesson = styled.div`
 
 export const ExercisesNumber = styled.div`
   width: 50%;
-  height: 336px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  gap: 30px;
 `;
 
 export const TextExercisesRepetitions = styled.ul`
@@ -98,7 +97,6 @@ export const ProgressLesson = styled.div`
   background: #f2f2f2;
   border-radius: 30px;
   width: 638px;
-  height: 336px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,7 +121,7 @@ export const NameExerciseProgress = styled.div`
   color: #000000;
 `;
 
-export const VisuallyProgressOne = styled.input`
+export const VisuallyProgressBlue = styled.input`
   overflow: hidden;
   -webkit-appearance: none;
   width: 278px;
@@ -140,16 +138,9 @@ export const VisuallyProgressOne = styled.input`
   }
 `;
 
-export const VisuallyOne = styled.div`
-  display: flex;
-  width: 45%;
-  height: 100%;
-  background: rgb(86, 94, 239);
-  border-radius: 22px;
-  justify-content: center;
-`;
+export const InputMaster = styled.div``;
 
-export const VisuallyProgressTwo = styled.input`
+export const VisuallyProgressOrange = styled.input`
   overflow: hidden;
   -webkit-appearance: none;
   width: 278px;
@@ -166,16 +157,7 @@ export const VisuallyProgressTwo = styled.input`
   }
 `;
 
-export const VisuallyTwo = styled.div`
-  display: flex;
-  width: 45%;
-  height: 100%;
-  background: #ff6d00;
-  border-radius: 22px;
-  justify-content: center;
-`;
-
-export const VisuallyProgressThree = styled.input`
+export const VisuallyProgressPurple = styled.input`
   overflow: hidden;
   -webkit-appearance: none;
   width: 278px;
@@ -190,13 +172,4 @@ export const VisuallyProgressThree = styled.input`
     height: 0px;
     box-shadow: -290px 0 0 290px #9a48f1;
   }
-`;
-
-export const VisuallyThree = styled.div`
-  display: flex;
-  width: 45%;
-  height: 100%;
-  background: #9a48f1;
-  border-radius: 22px;
-  justify-content: center;
 `;

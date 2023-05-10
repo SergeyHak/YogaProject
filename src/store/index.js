@@ -13,8 +13,8 @@ export const store = configureStore({
     user: userReducer,
     courses: coursesReducer,
     workouts: workoutsReducer,
+    exerciseCount: exerciseProgressReducer,
     userData: userDataReducer,
-    exerciseProgress: exerciseProgressReducer,
     pay: payProductSlice,
   },
   middleware: (getDefaultMiddleware) =>

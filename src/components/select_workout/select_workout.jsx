@@ -11,6 +11,7 @@ export default function SelectWorkoutWindow({ refURL }) {
   const workouts = useSelector((state) => state.workouts.workouts);
 
 
+
   let selectedWorkouts = [];
   if (workoutsID.length > 0 && Object.entries(workouts).length > 0) {
     selectedWorkouts = workoutsID.map((p) => workouts.workouts[p]);
