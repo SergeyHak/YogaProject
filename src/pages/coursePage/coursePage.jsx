@@ -7,13 +7,14 @@ import { useAuth } from "../../store/hooks/use-auth";
 
 import * as S from "./styles";
 
-import logo from "../../img/logoBlack.png";
+
 import LikesImg1 from "../../img/likes1.png";
 import LikesImg2 from "../../img/likes2.png";
 import LikesImg3 from "../../img/likes3.png";
 import Handset from "../../img/handset.png";
 import backgroundProf1Url from "../../img/background_prof_1.png";
 import { mutationUsersCourseDatabase } from "../../services/mutationFirebaseUsersApi";
+import { UserHeader } from "../../components/userHeader/userHeader";
 
 export default function CoursePage({ refURL }) {
   const dispatch = useDispatch();
@@ -50,14 +51,7 @@ export default function CoursePage({ refURL }) {
   return (
     <S.Container>
       <S.ContentBlock>
-        <S.TitleBlock>
-          <Link to="/">
-            <S.LogoImg src={logo} alt="logo" />
-          </Link>
-          <Link to="/login">
-            <S.EnterButton>Войти</S.EnterButton>
-          </Link>
-        </S.TitleBlock>
+        <UserHeader/>
         <S.HeadContentBlock
           style={{ backgroundImage: `url(${backgroundProf1Url})` }}
         >
