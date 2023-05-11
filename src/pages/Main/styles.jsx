@@ -15,6 +15,7 @@ export const LogoTitleDiv = styled.div`
   justify-content: space-between;
   padding-top: 36px;
   margin-right: 16px;
+  align-items: center;
 `;
 export const HeadContentDiv = styled.div`
   display: flex;
