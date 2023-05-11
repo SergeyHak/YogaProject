@@ -127,3 +127,18 @@ export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const ExitUser = styled.div`
+  width: 150px;
+  z-index: 1;
+  padding-top: 12px;
+  height: 50px;
+  text-align: center;
+  color: white;
+  font-size: 22px;
+  position: absolute;
+  top: 123px;
+  margin-left: 65px;
+  border-radius: 20px;
+  background-color: #580ea2;
+`;

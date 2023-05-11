@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/hooks/use-auth";
+import { useDispatch } from "react-redux";
 
 import * as S from "./styles";
 import * as A from "../../components/userHeader/styles";
 import logo from "../../img/logo.png";
 import SaleSticker from "../../img/Sale_sticker.png";
 import UserPhoto from "../../img/EllipsePhoto.png";
+import { removeUser } from "../../store/userSlice.js";
 
 import ProfCard1 from "../../img/prof_card_1.png";
 import ProfCard2 from "../../img/prof_card_2.png";
@@ -22,8 +25,17 @@ const courses = [
 ];
 
 export default function MainPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isAuth } = useAuth();
+  let login = localStorage.getItem("login");
+  const [visible, setVisible] = useState(true);
 
+  const toggleVisibility = () => setVisible(!visible);
+  const Exit = () => {
+    dispatch(removeUser());
+    navigate("/login", { replace: true });
+  };
   return (
     <S.ContainerDiv>
       <S.ContentDiv>
@@ -34,7 +46,10 @@ export default function MainPage() {
               <Link to="/profile">
                 <A.UserPhotoImg src={UserPhoto} alt="userphoto" />
               </Link>
-              <A.UserNameSpan>Сергей ↓</A.UserNameSpan>
+              <A.UserNameSpan onClick={toggleVisibility}>
+                {login} ↓
+              </A.UserNameSpan>
+              {!visible && <S.ExitUser onClick={Exit}>Выход</S.ExitUser>}
             </A.UserDiv>
           ) : (
             <Link to="/login">
