@@ -21,7 +21,6 @@ const courses = [
   { id: "3bu6y5", img: ProfCard5 },
 ];
 
-
 export default function MainPage() {
   const { isAuth } = useAuth();
 
@@ -45,7 +44,7 @@ export default function MainPage() {
         </S.LogoTitleDiv>
         <S.HeadContentDiv>
           <S.SubTitleDiv>
-            <S.TitleTextSpan>
+            <S.TitleTextSpan name="top">
               Онлайн-тренировки для занятий дома
             </S.TitleTextSpan>
             <S.TitleTextSpanH>
@@ -62,7 +61,9 @@ export default function MainPage() {
           ))}
         </S.SportChoiceDiv>
         <S.ButtonDiv>
-          <S.UpButton>Наверх ↑</S.UpButton>
+          <a href="#top">
+            <S.UpButton>Наверх ↑</S.UpButton>
+          </a>
         </S.ButtonDiv>
       </S.ContentDiv>
     </S.ContainerDiv>
