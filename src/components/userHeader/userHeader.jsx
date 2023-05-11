@@ -16,7 +16,8 @@ export function UserHeader() {
   const { isAuth } = useAuth();
 
   const [visible, setVisible] = useState(true);
-
+  let login = localStorage.getItem("login");
+  
   const toggleVisibility = () => setVisible(!visible)
   const Exit = () => {
     dispatch(removeUser());
@@ -37,7 +38,9 @@ export function UserHeader() {
             <Link to="/profile">
               <S.UserPhotoImg src={UserPhoto} alt="userphoto" />
             </Link>
-            <S.UserNameSpan onClick={toggleVisibility}>Сергей ↓</S.UserNameSpan>
+            <S.UserNameSpan onClick={toggleVisibility}>
+              {login} ↓
+            </S.UserNameSpan>
             {!visible && <S.ExitUser onClick={Exit}>Выход</S.ExitUser>}
           </S.UserDiv>
         </S.HeadContentDiv>
