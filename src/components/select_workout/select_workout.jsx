@@ -16,8 +16,6 @@ export default function SelectWorkoutWindow({ refURL }) {
   if (workoutsID.length > 0 && Object.entries(workouts).length > 0) {
     selectedWorkouts = workoutsID.map((p) => workouts.workouts[p]);
   }
-
-
   return (
     <S.ContainerDiv>
       <S.TitleWindowSpan>Выберите тренировку</S.TitleWindowSpan>
