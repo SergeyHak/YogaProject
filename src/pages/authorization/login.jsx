@@ -42,7 +42,9 @@ function Login() {
   return (
     <S.Container>
       <S.MeinBox>
-        <S.ImgLogo src={logoBlack} alt="logoBlack" />
+        <Link to='/'>
+          <S.ImgLogo src={logoBlack} alt="logoBlack" />
+        </Link>
         <S.Inputs
           type="email"
           placeholder="email"
