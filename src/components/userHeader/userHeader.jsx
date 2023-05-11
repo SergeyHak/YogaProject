@@ -21,10 +21,8 @@ export function UserHeader() {
   const toggleVisibility = () => setVisible(!visible)
   const Exit = () => {
     dispatch(removeUser());
-    navigate("/login", { replace: true });
-
+    navigate("/login", { replace: true });   
   }
-
   return (
     <div>
       {isAuth ? (
