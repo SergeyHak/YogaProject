@@ -30,16 +30,18 @@ export default function MainPage() {
       <S.ContentDiv>
         <S.LogoTitleDiv>
           <S.LogoImg src={logo} alt="logo" />
-          {isAuth ?
-          (<A.UserDiv>
-            <A.UserPhotoImg src={UserPhoto} alt="userphoto" />
-            <A.UserNameSpan  >Сергей ↓</A.UserNameSpan>
-          </A.UserDiv>)
-          :
-          (<Link to="/login">
-            <S.EnterButton>Войти</S.EnterButton>
-          </Link>)
-          }
+          {isAuth ? (
+            <A.UserDiv>
+              <Link to="/profile">
+                <A.UserPhotoImg src={UserPhoto} alt="userphoto" />
+              </Link>
+              <A.UserNameSpan>Сергей ↓</A.UserNameSpan>
+            </A.UserDiv>
+          ) : (
+            <Link to="/login">
+              <S.EnterButton>Войти</S.EnterButton>
+            </Link>
+          )}
         </S.LogoTitleDiv>
         <S.HeadContentDiv>
           <S.SubTitleDiv>

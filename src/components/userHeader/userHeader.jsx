@@ -1,5 +1,8 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/hooks/use-auth";
+import { removeUser } from "../../store/userSlice.js";
 
 import * as S from "./styles";
 import * as A from "../../pages/coursePage/styles";
@@ -8,7 +11,18 @@ import logoBlack from "../../img/logoBlack.png";
 import UserPhoto from "../../img/EllipsePhoto.png";
 
 export function UserHeader() {
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
   const { isAuth } = useAuth();
+
+  const [visible, setVisible] = useState(true);
+
+  const toggleVisibility = () => setVisible(!visible)
+  const Exit = () => {
+    dispatch(removeUser());
+    navigate("/login", { replace: true });
+
+  }
 
   return (
     <div>
@@ -20,8 +34,11 @@ export function UserHeader() {
             </Link>
           </S.LogoTitleDiv>
           <S.UserDiv>
-            <S.UserPhotoImg src={UserPhoto} alt="userphoto" />
-            <S.UserNameSpan>Сергей ↓</S.UserNameSpan>
+            <Link to="/profile">
+              <S.UserPhotoImg src={UserPhoto} alt="userphoto" />
+            </Link>
+            <S.UserNameSpan onClick={toggleVisibility}>Сергей ↓</S.UserNameSpan>
+            {!visible && <S.ExitUser onClick={Exit}>Выход</S.ExitUser>}
           </S.UserDiv>
         </S.HeadContentDiv>
       ) : (

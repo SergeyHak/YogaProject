@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { setUser } from "../../store/userSlice.js";
 
@@ -46,7 +46,9 @@ function Registration() {
   return (
     <S.Container>
       <S.MeinBox>
-        <S.ImgLogo src={logoBlack} alt="logoBlack" />
+        <Link to="/">
+          <S.ImgLogo src={logoBlack} alt="logoBlack" />
+        </Link>
         <S.Inputs
           type="email"
           placeholder="email"
