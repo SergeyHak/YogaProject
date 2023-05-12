@@ -59,6 +59,9 @@ export const TrainingButton = styled.button`
   &:hover {
     color: #c9eabd;
     border-color: #2da02d;
+    &> span{
+      color: #c9eabd;
+    }
   }
 `;
 export const TextSpan = styled.span`
@@ -68,7 +71,4 @@ export const TextSpan = styled.span`
   font-size: 16px;
   line-height: 18px;
   color: #000000;
-  &:hover {
-    color: #c9eabd;
-  }
 `;

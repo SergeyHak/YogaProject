@@ -10,6 +10,7 @@ export const UserDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
+  cursor: pointer;
   padding-top: 24px;
 `;
 export const LogoImg = styled.img`
@@ -35,4 +36,18 @@ export const UserNameSpan = styled.span`
 export const HeadContentDiv = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const ExitUser = styled.div`
+  width: 150px;
+  padding-top: 12px;
+  height: 50px;
+  text-align: center;
+  color: white;
+  font-size: 22px;
+  position: absolute;
+  top: 105px;
+  margin-left: 18px;
+  border-radius: 20px;
+  background-color: #580ea2;
 `;

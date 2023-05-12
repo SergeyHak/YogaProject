@@ -15,6 +15,7 @@ export const LogoTitleDiv = styled.div`
   justify-content: space-between;
   padding-top: 36px;
   margin-right: 16px;
+  align-items: center;
 `;
 export const HeadContentDiv = styled.div`
   display: flex;
@@ -126,4 +127,19 @@ export const ButtonDiv = styled.div`
   padding-top: 34px;
   display: flex;
   justify-content: center;
+`;
+
+export const ExitUser = styled.div`
+  width: 150px;
+  z-index: 1;
+  padding-top: 12px;
+  height: 50px;
+  text-align: center;
+  color: white;
+  font-size: 22px;
+  position: absolute;
+  top: 123px;
+  margin-left: 65px;
+  border-radius: 20px;
+  background-color: #580ea2;
 `;

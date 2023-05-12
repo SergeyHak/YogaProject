@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import { setUser } from "../../store/userSlice.js";
-
 import * as S from "./style";
 import logoBlack from "../../img/logoBlack.png";
 import getError from "../../data/authErrors";
@@ -13,14 +11,12 @@ import { mutationUsersDatabase } from "../../services/mutationFirebaseUsersApi";
 function Registration() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [isClick, setIsClick] = useState("false");
   localStorage.setItem("login", email);
   localStorage.setItem("pass", pass);
-
   const handleLogin = () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, pass)
@@ -42,11 +38,12 @@ function Registration() {
         setIsClick(!!err.message);
       });
   };
-
   return (
     <S.Container>
       <S.MeinBox>
-        <S.ImgLogo src={logoBlack} alt="logoBlack" />
+        <Link to="/">
+          <S.ImgLogo src={logoBlack} alt="logoBlack" />
+        </Link>
         <S.Inputs
           type="email"
           placeholder="email"

@@ -13,7 +13,6 @@ export function PopupExercises({
 }) {
   const [inputValues, setInputValues] = useState(["", "", "", ""]);
   inputValues.splice(label.length);
-  console.log(parseInt(label[0].match(/\d+/)), "max");
 
   const onValueChange = (val, index) => {
     let temp = inputValues;
