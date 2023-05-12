@@ -7,7 +7,7 @@ export const ContainerDiv = styled.div`
   border-radius: 12px;
   margin: 0 auto;
   top: 50px;
-  left: 500px;
+  left: 50%;
 `;
 export const ContentDiv = styled.div``;
 export const TitleWindowSpan = styled.span`
