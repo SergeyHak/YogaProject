@@ -8,6 +8,7 @@ import { PopupConfirm } from "../../components/popupConfirm/popupConfirm";
 import * as S from "./styles";
 import { useParams } from "react-router-dom";
 import { useDatabaseForWorkout } from "../../services/firebaseApi";
+import { useQueryUsersWorkoutProgressDatabase } from "../../services/queryFirebaseUsersApi";
 
 export default function Lesson() {
   const [popupActive, setPopupActive] = useState(false);
@@ -20,9 +21,17 @@ export default function Lesson() {
 
   useDatabaseForWorkout("workouts");
   const workouts = useSelector((state) => state.workouts.workouts);
-  const exercisesValues = useSelector(
-    (state) => state.exerciseCount.exerciseCount
+
+  useQueryUsersWorkoutProgressDatabase(localStorage.getItem("login"));
+  const allWorkoutsProgress = useSelector(
+    (state) => state.userData.user_workouts
   );
+
+  let workoutProgress = ["0", "0", "0", "0"];
+
+  if (typeof allWorkoutsProgress[params.id] !== "undefined") {
+    workoutProgress = allWorkoutsProgress[params.id].progress;
+  }
 
   let lesson = [];
   let listExercises = [];
@@ -97,7 +106,7 @@ export default function Lesson() {
                           min="0"
                           max={item.count}
                           step="1"
-                          value={exercisesValues[ind]}
+                          value={workoutProgress[ind]}
                           readOnly
                         />
                       ) : null}
@@ -108,7 +117,7 @@ export default function Lesson() {
                           min="0"
                           max={item.count}
                           step="1"
-                          value={exercisesValues[ind]}
+                          value={workoutProgress[ind]}
                           readOnly
                         />
                       ) : null}
@@ -119,7 +128,7 @@ export default function Lesson() {
                           min="0"
                           max={item.count}
                           step="1"
-                          value={exercisesValues[ind]}
+                          value={workoutProgress[ind]}
                           readOnly
                         />
                       ) : null}
@@ -136,6 +145,7 @@ export default function Lesson() {
             setPopupActive={setPopupActive}
             setPopupConfirmActive={setPopupConfirmActive}
             label={listExercises}
+            workoutID={params.id}
           />
         ) : null}
         {popupConfirmActive === true ? (

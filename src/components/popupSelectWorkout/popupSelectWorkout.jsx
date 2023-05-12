@@ -3,19 +3,18 @@ import * as S from "./style";
 import { Link } from "react-router-dom";
 import { useDataBase, useDatabaseForWorkout } from "../../services/firebaseApi";
 
-export default function SelectWorkoutWindow({ refURL }) {
+export default function PopupSelectWorkout({ refURL }) {
   useDataBase(refURL);
   const workoutsID = useSelector((state) => state.courses.workouts);
 
   useDatabaseForWorkout("workouts");
   const workouts = useSelector((state) => state.workouts.workouts);
 
-
-
   let selectedWorkouts = [];
   if (workoutsID.length > 0 && Object.entries(workouts).length > 0) {
     selectedWorkouts = workoutsID.map((p) => workouts.workouts[p]);
   }
+
   return (
     <S.ContainerDiv>
       <S.TitleWindowSpan>Выберите тренировку</S.TitleWindowSpan>

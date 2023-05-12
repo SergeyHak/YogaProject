@@ -12,11 +12,14 @@ const userDataSlice = createSlice({
     setUserData(state, action) {
       state.user_email = action.payload.user_email;
       state.user_courses = action.payload.user_courses;
+    },
+    setUserWorkoutProgressData(state, action) {
       state.user_workouts = action.payload.user_workouts;
     },
   },
 });
 
-export const { setUserData } = userDataSlice.actions;
+export const { setUserData, setUserWorkoutProgressData } =
+  userDataSlice.actions;
 
 export default userDataSlice.reducer;

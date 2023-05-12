@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { exerciseCount } from "../../store/exerciseProgressSlice";
+import { mutationUsersWorkoutProgressDatabase } from "../../services/mutationFirebaseUsersApi";
 import { Button } from "../button/button";
 import { Input } from "../input/input";
 
@@ -10,10 +9,10 @@ export function PopupExercises({
   setPopupActive,
   setPopupConfirmActive,
   label,
+  workoutID,
 }) {
   const [inputValues, setInputValues] = useState(["", "", "", ""]);
   inputValues.splice(label.length);
-  const dispatch = useDispatch();
 
   const onValueChange = (val, index) => {
     let temp = inputValues;
@@ -22,7 +21,11 @@ export function PopupExercises({
   };
 
   const HandleClickChanges = () => {
-    dispatch(exerciseCount(inputValues));
+    mutationUsersWorkoutProgressDatabase(
+      localStorage.getItem("login"),
+      workoutID,
+      inputValues
+    );
 
     setPopupConfirmActive(true);
     setPopupActive(false);
@@ -37,7 +40,10 @@ export function PopupExercises({
         <S.PopupTitle>Мой прогресс</S.PopupTitle>
         {inputValues.map((val, index) => (
           <Input
+            type="number"
             label={label[index].split("(")[0] || ""}
+            min="0"
+            max={parseInt(label[index].match(/\d+/))}
             key={index}
             onChange={(val) => {
               onValueChange(val, index);
