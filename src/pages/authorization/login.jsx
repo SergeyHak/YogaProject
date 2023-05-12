@@ -16,7 +16,7 @@ function Login() {
   const [isClick, setIsClick] = useState("false");
   localStorage.setItem("login", email);
   localStorage.setItem("pass", pass);
-  console.log(email, pass);
+ 
   const handleLogin = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, pass)
@@ -36,13 +36,12 @@ function Login() {
         setError(err.message);
         setIsClick(!!err.message);
       });
-   
   };
 
   return (
     <S.Container>
       <S.MeinBox>
-        <Link to='/'>
+        <Link to="/">
           <S.ImgLogo src={logoBlack} alt="logoBlack" />
         </Link>
         <S.Inputs

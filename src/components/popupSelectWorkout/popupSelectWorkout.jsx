@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import * as S from "./style";
+import * as S from "./styles";
 import { Link } from "react-router-dom";
 import { useDataBase, useDatabaseForWorkout } from "../../services/firebaseApi";
 

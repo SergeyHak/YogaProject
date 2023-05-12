@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../store/hooks/use-auth";
+import { useAuth } from "../../store/hooks/useAuth";
 import { removeUser } from "../../store/userSlice.js";
 
 import * as S from "./styles";
@@ -11,18 +11,18 @@ import logoBlack from "../../img/logoBlack.png";
 import UserPhoto from "../../img/EllipsePhoto.png";
 
 export function UserHeader() {
-   const dispatch = useDispatch();
-   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isAuth } = useAuth();
 
   const [visible, setVisible] = useState(true);
   let login = localStorage.getItem("login");
-  
-  const toggleVisibility = () => setVisible(!visible)
+
+  const toggleVisibility = () => setVisible(!visible);
   const Exit = () => {
     dispatch(removeUser());
-    navigate("/login", { replace: true });   
-  }
+    navigate("/login", { replace: true });
+  };
   return (
     <div>
       {isAuth ? (
