@@ -11,9 +11,7 @@ export function mutationUsersDatabase(email) {
   });
 }
 
-
 export function mutationUsersCourseDatabase(email, course, img) {
-
   const emailPath = email.replace(/\./g, "-");
   const database = firebase.database();
 
@@ -21,5 +19,19 @@ export function mutationUsersCourseDatabase(email, course, img) {
     purchased: true,
     id: course,
     img: img,
+  });
+}
+
+export function mutationUsersWorkoutProgressDatabase(
+  email,
+  workoutID,
+  inputValues
+) {
+  const emailPath = email.replace(/\./g, "-");
+  const database = firebase.database();
+
+  database.ref(`users/${emailPath}/workouts/${workoutID}`).set({
+    id: workoutID,
+    progress: inputValues,
   });
 }

@@ -2,21 +2,19 @@ import * as S from "./styles";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import { UserHeader } from "../../components/userHeader/userHeader";
-import SelectWorkoutWindow from "../../components/select_workout/select_workout";
+import PopupSelectWorkout from "../../components/popupSelectWorkout/popupSelectWorkout";
 import { useEmailChangeMutation } from "../../api/api";
 import { usePassChangeMutation } from "../../api/api";
 import { UserToken } from "../../api/api";
 import { useQueryUsersCourseDatabase } from "../../services/queryFirebaseUsersApi";
 
 export default function ProfilePage() {
-   const [changeEmail, {error, isLoading }] = useEmailChangeMutation();
+  const [changeEmail, { error, isLoading }] = useEmailChangeMutation();
   const [changePass] = usePassChangeMutation();
   const Tokens = UserToken();
   let login = localStorage.getItem("login");
   let pass = localStorage.getItem("pass");
-  // const payProductYoga = useSelector((state) => state.pay.yoga);
   const [SelectWorkout, setSelectWorkout] = useState(false);
 
   const [edit, setEdit] = useState(false);
@@ -29,9 +27,8 @@ export default function ProfilePage() {
   const emailPath = login.replace(/\./g, "-");
   useQueryUsersCourseDatabase(emailPath);
   const courses = useSelector((state) => state.userData.user_courses);
- 
+
   const toggleTraining = (course) => {
-    
     localStorage.setItem("selectedCourse", course);
 
     if (SelectWorkout) {
@@ -39,31 +36,25 @@ export default function ProfilePage() {
     } else {
       setSelectWorkout(true);
     }
-    
   };
-  
+
   return (
     <S.ContainerDiv>
       {SelectWorkout === true ? (
-        <SelectWorkoutWindow
+        <PopupSelectWorkout
           active={SelectWorkout}
           setActive={setSelectWorkout}
           refURL={`courses/${localStorage.getItem("selectedCourse")}`}
         />
       ) : null}
-      <S.ContentDiv>     
+      <S.ContentDiv>
         <UserHeader />
         <S.SubTitleDiv>
           <S.TitleTextSpan>Мой профиль</S.TitleTextSpan>
           <S.TitleTextSpanLogin>
             Логин:<S.SpanText>{valueMail}</S.SpanText>{" "}
-          </S.TitleTextSpanLogin>   
-          {error ? (
-          <S.ErrorSpan>{error.status}</S.ErrorSpan>
-          ):(
-            isLoading            
-          )
-          }        
+          </S.TitleTextSpanLogin>
+          {error ? <S.ErrorSpan>{error.status}</S.ErrorSpan> : isLoading}
           {edit ? (
             <div>
               <S.UserLoginInput
@@ -71,12 +62,11 @@ export default function ProfilePage() {
                   setValueMail(e.target.value) >
                   localStorage.setItem("userMail", valueMail)
                 }
-                value={valueMail}              
-              />              
+                value={valueMail}
+              />
               <S.LoginButton onClick={() => changeEmail() > setEdit(false)}>
                 Сохранить
               </S.LoginButton>
-
             </div>
           ) : null}
           <S.TitleTextSpanPass>
