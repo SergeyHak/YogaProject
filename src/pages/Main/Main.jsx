@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../store/hooks/use-auth";
+import { useAuth } from "../../store/hooks/useAuth";
 import { useDispatch } from "react-redux";
 
 import * as S from "./styles";

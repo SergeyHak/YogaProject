@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UserHeader } from "../../components/userHeader/userHeader";
 import PopupSelectWorkout from "../../components/popupSelectWorkout/popupSelectWorkout";
-import { useEmailChangeMutation } from "../../api/api";
-import { usePassChangeMutation } from "../../api/api";
-import { UserToken } from "../../api/api";
+import {
+  useEmailChangeMutation,
+  usePassChangeMutation,
+  UserToken,
+} from "../../services/changeAccountDataApi";
+
 import { useQueryUsersCourseDatabase } from "../../services/queryFirebaseUsersApi";
 
 export default function ProfilePage() {

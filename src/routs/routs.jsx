@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useAuth } from "../store/hooks/use-auth";
+import { useAuth } from "../store/hooks/useAuth";
 
 import Registration from "../pages/authorization/registration";
 import Login from "../pages/authorization/login";

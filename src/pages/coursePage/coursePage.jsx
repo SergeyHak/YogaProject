@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDataBase } from "../../services/firebaseApi";
-import { useAuth } from "../../store/hooks/use-auth";
+import { useAuth } from "../../store/hooks/useAuth";
 import * as S from "./styles";
 import LikesImg1 from "../../img/likes1.png";
 import LikesImg2 from "../../img/likes2.png";

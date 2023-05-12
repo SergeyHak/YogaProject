@@ -10,7 +10,7 @@ function App() {
   return (
     <Wrapper>
       <AppRoutes />
-     </Wrapper>
+    </Wrapper>
   );
 }
 

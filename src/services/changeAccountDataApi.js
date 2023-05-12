@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { useSelector } from "react-redux";
 
-export function UserToken(props) {
+export function UserToken() {
   let userToken = useSelector((state) => state.user.token);
   localStorage.setItem("token", userToken);
 }
@@ -9,7 +9,7 @@ const UsTok = localStorage.getItem("token");
 const userMail = localStorage.getItem("userMail");
 const userPass = localStorage.getItem("userPass");
 
-export const api = createApi({
+export const changeAccountDataApi = createApi({
   reducerPath: "YogaApi",
   baseQuery: fetchBaseQuery({
     baseUrl:
@@ -29,7 +29,7 @@ export const api = createApi({
           returnSecureToken: true,
         },
       }),
-    }),  
+    }),
     passChange: builder.mutation({
       query: () => ({
         url: "",
@@ -47,4 +47,4 @@ export const {
   useGetByNameQuery,
   useEmailChangeMutation,
   usePassChangeMutation,
-} = api;
+} = changeAccountDataApi;
