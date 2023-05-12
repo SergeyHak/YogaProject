@@ -106,10 +106,7 @@ export default function ProfilePage() {
                     src={require(`../../img/${item[1].img}`)}
                     alt="prof_card"
                   />
-                  <S.SportButton
-                    // refURL={`courses/${item._id}`}
-                    onClick={() => toggleTraining(item[0])}
-                  >
+                  <S.SportButton onClick={() => toggleTraining(item[0])}>
                     Перейти →
                   </S.SportButton>
                 </S.SportDiv>

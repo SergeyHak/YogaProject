@@ -4,7 +4,6 @@ import coursesReducer from "./coursesSlice";
 import userDataReducer from "./userDatabaseSlice";
 import { api } from "../api/api";
 import workoutsReducer from "./workoutsSlice";
-import payProductSlice from "./payProductSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +12,6 @@ export const store = configureStore({
     courses: coursesReducer,
     workouts: workoutsReducer,
     userData: userDataReducer,
-    pay: payProductSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
