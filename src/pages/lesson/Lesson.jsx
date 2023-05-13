@@ -28,8 +28,13 @@ export default function Lesson() {
   );
 
   let workoutProgress = ["0", "0", "0", "0"];
-  
-  if (typeof allWorkoutsProgress[params.id] !== "undefined") {
+
+  console.log(allWorkoutsProgress, params.id);
+
+  if (
+    typeof allWorkoutsProgress !== "undefined" &&
+    typeof allWorkoutsProgress[params.id] !== "undefined"
+  ) {
     workoutProgress = allWorkoutsProgress[params.id].progress;
   }
 
@@ -94,13 +99,14 @@ export default function Lesson() {
               </S.TitleTextSpanLogin>
               <S.BlockAllExercises>
                 {listExercisesSorted.map((item, ind) => (
-                  <S.BlockProgress>
+                  <S.BlockProgress key={ind}>
                     <S.NameExerciseProgress>
                       {item.title}
                     </S.NameExerciseProgress>
                     <S.InputMaster>
                       {item.color === "blue" ? (
                         <S.VisuallyProgressBlue
+                          key={ind}
                           name={item}
                           type="range"
                           min="0"
@@ -112,6 +118,7 @@ export default function Lesson() {
                       ) : null}
                       {item.color === "orange" ? (
                         <S.VisuallyProgressOrange
+                          key={ind}
                           name={item}
                           type="range"
                           min="0"
@@ -123,6 +130,7 @@ export default function Lesson() {
                       ) : null}
                       {item.color === "purple" ? (
                         <S.VisuallyProgressPurple
+                          key={ind}
                           name={item}
                           type="range"
                           min="0"
