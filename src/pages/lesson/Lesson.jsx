@@ -29,7 +29,12 @@ export default function Lesson() {
 
   let workoutProgress = ["0", "0", "0", "0"];
 
-  if (typeof allWorkoutsProgress[params.id] !== "undefined") {
+  console.log(allWorkoutsProgress, params.id);
+
+  if (
+    typeof allWorkoutsProgress !== "undefined" &&
+    typeof allWorkoutsProgress[params.id] !== "undefined"
+  ) {
     workoutProgress = allWorkoutsProgress[params.id].progress;
   }
 
