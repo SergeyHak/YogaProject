@@ -8,6 +8,7 @@ import Lesson from "../pages/lesson/Lesson";
 import CoursePage from "../pages/coursePage/coursePage";
 import ProfilePage from "../pages/profile/profile";
 import ProtectedRoute from "./protectedRouts";
+import NotFound from "../pages/notFound/NotFound";
 
 function AppRoutes() {
   const { isAuth } = useAuth;
@@ -22,6 +23,7 @@ function AppRoutes() {
         <Route path="/lesson/:id" element={<Lesson />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
