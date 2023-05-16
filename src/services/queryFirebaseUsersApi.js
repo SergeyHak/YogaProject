@@ -13,7 +13,7 @@ export function useQueryUsersCourseDatabase(refURL) {
   const dispatch = useDispatch();
   firebase
     .database()
-    .ref(`users/${refURL}`)
+    .ref(`users/${refURL.toLowerCase()}`)
     .once("value")
     .then((snapshot) => {
       const data = snapshot.val();

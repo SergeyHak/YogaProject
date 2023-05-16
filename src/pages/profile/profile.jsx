@@ -4,28 +4,22 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UserHeader } from "../../components/userHeader/userHeader";
 import PopupSelectWorkout from "../../components/popupSelectWorkout/popupSelectWorkout";
-import {
-  useEmailChangeMutation,
-  usePassChangeMutation,
-  UserToken,
-} from "../../services/changeAccountDataApi";
+import {  useEmailChangeMutation, usePassChangeMutation} from "../../services/changeAccountDataApi";
 
 import { useQueryUsersCourseDatabase } from "../../services/queryFirebaseUsersApi";
-
+ 
 export default function ProfilePage() {
-  const [changeEmail, { error, isLoading }] = useEmailChangeMutation();
+  const [changeEmail, { error, isLoading, isSuccess }] = useEmailChangeMutation();
   const [changePass] = usePassChangeMutation();
-  const Tokens = UserToken();
+  let userToken = useSelector((state) => state.user.token);
   let login = localStorage.getItem("login");
   let pass = localStorage.getItem("pass");
   const [SelectWorkout, setSelectWorkout] = useState(false);
 
   const [edit, setEdit] = useState(false);
   const [valueMail, setValueMail] = useState(login);
-  localStorage.setItem("userMail", valueMail);
   const [editPass, setEditPass] = useState(false);
   const [valuePass, setValuePass] = useState(pass);
-  localStorage.setItem("userPass", valuePass);
 
   const emailPath = login.replace(/\./g, "-");
   useQueryUsersCourseDatabase(emailPath);
@@ -40,7 +34,16 @@ export default function ProfilePage() {
       setSelectWorkout(true);
     }
   };
+  console.log(isSuccess)
 
+  const onChangeEmail = () =>{
+    changeEmail({email:valueMail,token:userToken})
+    setEdit(false)
+  }
+const onChangePassword = ()=>{
+  changePass({password:valuePass,token:userToken})
+  setEditPass(false)
+}
   return (
     <S.ContainerDiv>
       {SelectWorkout === true ? (
@@ -57,18 +60,21 @@ export default function ProfilePage() {
           <S.TitleTextSpanLogin>
             Логин:<S.SpanText>{valueMail}</S.SpanText>{" "}
           </S.TitleTextSpanLogin>
-          {error ? <S.ErrorSpan>{error.status}</S.ErrorSpan> : isLoading}
+          {error ? 
+          ( <S.ErrorSpan>{error.data.error.message}</S.ErrorSpan>) : (isLoading)}
           {edit ? (
             <div>
               <S.UserLoginInput
-                onChange={(e) =>
-                  setValueMail(e.target.value) >
-                  localStorage.setItem("userMail", valueMail)
-                }
+                onChange={(e) =>{
+                  setValueMail(e.target.value) 
+                }}
                 value={valueMail}
               />
-              <S.LoginButton onClick={() => changeEmail() > setEdit(false)}>
+              <S.LoginButton onClick={onChangeEmail}>
                 Сохранить
+              </S.LoginButton>             
+              <S.LoginButton  onClick={() => setEdit(false)}>
+                Отмена
               </S.LoginButton>
             </div>
           ) : null}
@@ -78,24 +84,26 @@ export default function ProfilePage() {
           {editPass ? (
             <div>
               <S.UserLoginInput
-                onChange={(e) =>
-                  setValuePass(e.target.value) >
-                  localStorage.setItem("userPass", valuePass)
-                }
+                onChange={(e) =>{
+                  setValuePass(e.target.value) 
+                }}
                 value={valuePass}
               />
-              <S.LoginButton onClick={() => changePass() > setEditPass(false)}>
+              <S.LoginButton onClick={onChangePassword}>
                 Сохранить
+              </S.LoginButton>
+              <S.LoginButton onClick={()=>setEditPass(false)}>
+                Отмена
               </S.LoginButton>
             </div>
           ) : null}
         </S.SubTitleDiv>
         <S.ChangeLogPassDiv>
-          <S.LogButton onClick={() => setEdit(true) > Tokens}>
+          <S.LogButton onClick={() => setEdit(true) }>
             Редактировать логин
           </S.LogButton>
 
-          <S.PassButton onClick={() => setEditPass(true) > Tokens}>
+          <S.PassButton onClick={() => setEditPass(true)  }>
             Редактировать пароль
           </S.PassButton>
         </S.ChangeLogPassDiv>
