@@ -14,8 +14,9 @@ function Login() {
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [isClick, setIsClick] = useState("false");
-  localStorage.setItem("login", email);
   localStorage.setItem("pass", pass);
+  localStorage.setItem("login", email);
+
  
   const handleLogin = () => {
     const auth = getAuth();
@@ -25,7 +26,7 @@ function Login() {
           setUser({
             email: user.email,
             id: user.uid,
-            token: user.accessToken,
+            token: user.accessToken,            
           })
         );
         navigate("/profile", { replace: true });
@@ -37,7 +38,6 @@ function Login() {
         setIsClick(!!err.message);
       });
   };
-
   return (
     <S.Container>
       <S.MeinBox>
