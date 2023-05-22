@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+![Typing SVG](https://readme-typing-svg.herokuapp.com?font=&weight=1000&size=40&pause=1000&color=F7245F&background=6D28FF00&width=900&lines=Курсовая+работа+YogaProject!)
+## Разработка приложения для занятия любимым видом спорта.
+ Финальный результат этого задания - реализация приложения, с тренировками на день  заполнением прогресса и видеоматериалами. 
+ Описание проекта c пояснениями доступно [здесь](https://www.figma.com/file/QoOmLM2WGbES23xQeDCCYi/%D0%A1%D0%B0%D0%B9%D1%82-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D1%82%D1%80%D0%B5%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%BA?type=design&node-id=0-1).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Deploy [здесь](https://creative-elf-af0aca.netlify.app/).
 
-## Available Scripts
+### Состав проекта
+***
+Проект состоит из двух частей: бэкенд и фронтенд.
+#### Бэкенд
+Бекэнд: [YogaProgect](https://console.firebase.google.com/u/1/project/yoga-prodject/database/yoga-prodject-default-rtdb/data?hl=ru).
+Бэкенд этого приложения реализован с помощью [![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)](https://firebase.google.com/)
+#### Основные возможности бэкенда:
+- Регистрация (log in)
+- Возможность залогиниться и разлогиниться (sign up, sign out)
+- Получение информации о текущем пользователе
+- Добавление пользователю купленных курсов
+- Смена логина пользователя
+- Смена пароля пользователя
+- Видеоматериалы тренировок
+### Список экранов проекта 
+***
+#### Фронтенд
+#### Экран авторизации
+Пользователю предлагается ввести логин и пароль, если он уже зарегистрирован, и нажать "Войти". Если пользователь еще не зарегистрирован, ему необходимо нажать "Зарегистрироваться".
 
-In the project directory, you can run:
+#### Экран регистрации
+На экране регистрации пользователь придумывает логин и пароль. После этого он нажимает “Зарегистрироваться”. После регистрации пользователь сразу попадает на страницу профиля.
 
-### `npm start`
+#### Главный экран
+Главный экран, на котором отражаются все доступные виды тренировок. Пользователь на этом экране может выбрать любую тренировку которая ему понравилась.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Экран тренировки
+На этом экране отображается описание тренировки выбранной на главном экране, прочитав это описание пользователь может решить стоит ли ему покупать этот курс тренировок, если ему это подходит на этом экрнае он может его приобрести.
+#### Экран профиля
+Здесь отображаются данные пользователя такие как логин, пароль и купленные курсы тренировок. На этом экране есть возможность перейти непосредственно к тренировке нажав кнопку "Перейти" на самой тренировке.
+#### Экран выбора тренировки
+Это скорее модальное окно в котором предоставлены все доступные тренировки по выбранному курсу.
+#### Экран тренировки
+Здесь пользователь может просмотреть видео тренировки повторяя за наставником, а также есть возможность увидеть наглядно свой прогресс.
+#### Экран заполнения прогресса
+Это также модальное окно с полями ввода, где пользователь имеет возможность записать количество повторений и сохранить свой прогресс, который сразу же отобразится на "Экране тренировки".
+## Запуск проекта
+***
+1. Склонируйте репозиторий:
+```
+$ git clone https://github.com/SergeyHak/YogaProject
+```
+2. Установите зависимости:
+```
+$ npm i
+```
+3. Запустите проект:
+```
+$ npm start
+```
+### Разработчики проекта
+***
+[![Bloggez](https://img.shields.io/badge/Anton_Somikkk-FF5722?style=for-the-badge&logo=blogger&logoColor=white)](https://github.com/Anton-Somikkk) [![Ghost](https://img.shields.io/badge/irarekut-000?style=for-the-badge&logo=ghost&logoColor=%23F7DF1E)](https://github.com/irarekut) [![ChatGPT](https://img.shields.io/badge/Komarov_Georgy-74aa9c?style=for-the-badge&logo=openai&logoColor=white)](https://github.com/ckarnishon) [![Opera](https://img.shields.io/badge/SergeyHak-FF1B2D?style=for-the-badge&logo=Opera&logoColor=white)](https://github.com/SergeyHak)
