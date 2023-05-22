@@ -1,4 +1,4 @@
-![Typing SVG](https://readme-typing-svg.herokuapp.com?font=&weight=1000&size=40&pause=1000&color=F7245F&background=6D28FF00&width=900&lines=Курсовая+работа+YogaProject!).
+![Typing SVG](https://readme-typing-svg.herokuapp.com?font=&weight=1000&size=40&pause=1000&color=F7245F&background=6D28FF00&width=1000&lines=Курсовая+работа+YogaProject!).
  ### _Разработка приложения для занятия любимым видом спорта._
  Финальный результат этого задания - реализация приложения, с тренировками на день  заполнением прогресса и видеоматериалами. 
  Описание проекта c пояснениями доступно [здесь](https://www.figma.com/file/QoOmLM2WGbES23xQeDCCYi/%D0%A1%D0%B0%D0%B9%D1%82-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D1%82%D1%80%D0%B5%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%BA?type=design&node-id=0-1).
